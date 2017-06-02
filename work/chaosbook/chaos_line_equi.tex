@@ -1,0 +1,268 @@
+\chapter{Simple Chaotic Flows with A Line Equilibrium}
+\label{chap:chaoslineequi}
+\begin{pauthor}
+  Xiong Wang\\
+  Institute for Advanced Study,Shenzhen University,Nanshan District Shenzhen, Guangdong, China 518060\\
+  \email{wangxiong8686@szu.edu.cn}\\
+  Guanrong Chen\\
+  Department of Electronic,Engineering, City University of Hong Kong, Hong Kong SAR, China.\\
+  \email{eegchen@cityu.edu.hk}\\
+  Sajad Jafari\\
+  Biomedical Engineering Department, Amirkabir University of Technology, Tehran
+  15875–4413, Iran\\
+  \email{sajadjafari83@gmail.com}
+\end{pauthor}
+
+\section{Introduction}
+
+Simple systems of nonlinear differential equations can exhibit chaos as we mentioned before.
+And it's now possible to explore the entire parameter space of such systems with the development
+of computer science.
+
+Recent research on such systems has categorizing periodic and chaotic attractors as either self-excited
+or hidden\cite{Kuznetsov2010Analytical,Kuznetsov2011Hidden,Leonov2011,
+  Leonov20112494,Leonov20112230,Leonov2011Hidden,Leonov2012Hidden,Leonov2013Analytical,
+  Leonov2012IWCFTA2012}. 
+A self-excited attractor has a basin of attraction that is associated with an unstable equilibrium while
+a hidden attractor has a basin of attraction that does not intersect with small neighborhoods
+of any equilibrium points.
+The classical attractor such as Lorenz, Rossler, Chua, Chen, Sprott systems (case B-S) and other
+widely-know attractors are those excited from unstable equilibrium. From a computational point of
+view, a trajectory starts from a point on the unstable manifold in the neighborhood of an unstable
+equilibrium can reach an attractor and been identified\cite{Leonov20112230}. However, such method
+is inapplicable for hidden attractor. Nevertheless, hidden attractors play important roles in
+engineering that even a small perturbations in a structure like a bridge or an airplane wing may cause disasters.
+The chaotic attractors in dynamical systems without any equilibrium points or with only
+stable equilibrium are hidden attractors. That's the reason why such systems are rarely
+found and only a few such examples have been reported\cite{Jafari2013Elementary,MALIHE2013SIMPLE,Wang2011A,Wang2012Constructing,Wei2012Dynamical,Wang2012A,Wei2011Dynamical,Wang2012AB,Wei2012Delayed,Wei2010Anti}.
+
+In this chapter, we'll introduce chaotic systems with a line equilibrium of which attractors 
+can categorised as hidden attractor.
+Although in such systems, the basin of attraction may intersect with the line equilibrium  
+in some section, it's impossible to identify the chaotic attractor by choosing an arbitrary initial 
+condition in the vicinity of the unstable equilibrium due to uncountably many points on the line 
+outside the basin of attraction of the chaotic attractor. From a computational point of view,
+these attractors are hidden and knowledge about equilibrium does not help in their localization.
+
+On the other hand, among those dynamical systems with a line equilibrium in the literature
+\cite{MARCELO2012HOPF,Fiedler2000Generic,Fiedler2000Generic2,BERNOLD2012GENERIC},
+only one chaotic example has been reported \cite{Zhou2013A} and is artificial for the reason that it's a four-dimensional
+system that can be reduced to three-dimensional system in which the line equilibrium vanishes.
+
+The goal of this chapter is to describe a new category of hidden attractor and expand the list of
+known mathematically simple hidden chaotic attractors. We can perform a systematic computer
+search for chaos in three-dimensional autonomous systems with quadratic nonlinearities which
+have been designed so that there will be a line equilibrium and can not been made to vanish
+by reduction to a system of lower dimension.
+
+\begin{table}[htb]
+\caption{\label{tab:line_01}Six simple chaotic flows with line equilibrium.}
+\centering
+\begin{tabular}{lllrrrrr}
+\hline
+\hline
+Case & Equations & \((a,b)\) & Equilibrium & Eigenvalues & LEs & \(D_{KY}\) & \((x_0,y_0,z_0)\)\\
+\hline
+\(LE_1\) & \(\dot{x} = y\) & a = 15 & 0 & \(\frac{z\pm\sqrt{z^2-4}}{2}\) & 0.0717 & 2.1371 & 0\\
+ & \(\dot{y} = -x + yz\) & b = 1 & 0 & 0 & 0 &  & 0.5\\
+ & \(\dot{z} = -x - axy - bxz\) &  & z &  & -0.5232 &  & 0.5\\
+\hline
+\(LE_2\) & \(\dot{x} = y\) & a = 17 & 0 & \(\frac{z\pm\sqrt{z^2-4}}{2}\) & 0.0564 & 2.1927 & 0\\
+ & \(\dot{y} = -x + yz\) & b = 1 & 0 & 0 & 0 &  & 0.4\\
+ & \(\dot{z} = -y - axy - bxz\) &  & z &  & -0.2927 &  & 0\\
+\hline
+\(LE_3\) & \(\dot{x} = y\) & a = 18 & 0 & $\frac{z\pm{}\sqrt{z^2-4}}{2}$ & 0.0556 & 2.1714 & 0\\
+ & \(\dot{y} = -x + yz\) & b = 1 & 0 & 0 & 0 &  & -0.4\\
+ & \(\dot{z} = x^2 - axy - bxz\) &  & z &  & -0.3245 &  & 0.5\\
+\hline
+\(LE_4\) & \(\dot{x} = y\) & a = 4 & 0 & $\frac{z\pm{}\sqrt{z^2-4}}{2}$ & 0.0539 & 2.1712 & 0.2\\
+ & \(\dot{y} = -x + yz\) & b = 0.6 & 0 & 0 & 0 &  & 0.7\\
+ & \(\dot{z} = -axy - bxy - yz\) &  & z &  & -0.3147 &  & 0\\
+\hline
+\(LE_5\) & \(\dot{x} = y\) & a = 1.5 & 0 & $\frac{z\pm{}\sqrt{z^2-4a}}{2}$ & 0.1386 & 2.1007 & 0.7\\
+ & \(\dot{y} = -ax + yz\) & b = 5 & 0 & 0 & 0 &  & 1\\
+ & \(\dot{z} = -x^2 - y^2 - bxz\) &  & z &  & -1.3764 &  & 0\\
+\hline
+\(LE_6\) & \(\dot{x} = y\) & a = 0.04 & 0 & $\frac{z\pm{}\sqrt{z^2-4}}{2}$ & 0.0543 & 2.0860 & 12\\
+ & \(\dot{y} = -x + yz\) & b = 0.1 & 0 & 0 & 0 &  & 2\\
+ & \(\dot{z} = -ay^2 - xy - bxz\) &  & z &  & -0.6314 &  & 0\\
+\hline
+\(LE_7\) & \(\dot{x} = z\) & a = 1.85 & 0 & $\frac{-0.3y\pm{}\sqrt{0.09y^2-4y}}{2}$ & 0.1144 & 2.0140 & 5.1\\
+ & \(\dot{y} = x + yz\) & b = 0.3 & y & 0 & 0 &  & 7\\
+ & \(\dot{z} = -ax^2 - xy - byz\) &  & 0 &  & -1.0270 &  & 0\\
+\hline
+\(LE_8\) & \(\dot{x} = z\) & a = 3 & 0 & $\pm{}\sqrt{y}$ & 0.0521 & 2.0647 & 0\\
+ & \(\dot{y} = -x - yz\) & b = 1 & y & 0 & 0 &  & -0.3\\
+ & \(\dot{z} = ax^2 - xy - bxz\) &  & 0 &  & -0.8053 &  & -1\\
+\hline
+\(LE_9\) & \(\dot{x} = z\) & a = 1.62 & x & $\frac{0.62\pm{}\sqrt{6.8644-4x^2}}{2}$ & 0.0642 & 2.0939 & 0\\
+ & \(\dot{y} = -ay + xz\) & b = 0.2 & 0 & 0 & 0 &  & 1\\
+ & \(\dot{z} = z - bz^2 + xy\) &  & 0 &  & -0.6842 &  & 0.8\\
+\hline
+\hline
+\end{tabular}
+\end{table}
+
+\section{Simple Chaotic Flows with A Line Equilibrium}
+
+We start from a special case of Nose-Hoover oscillator \cite{Hoover1995Remark} which describes many
+natural phenomena\cite{Posch1986Canonical}.
+The form we'll focus on is the conservative Sprott case A system \cite{Sprott1994Some},
+
+\begin{equation}
+\label{eq:line_eq1}
+  \left\{
+    \begin{array}{l}
+      \dot{x}=y\\
+      \dot{y}=-x+yz \\
+      \dot{z}=1-y^{2}.
+    \end{array}
+  \right.
+\end{equation}
+
+The system is the oldest and best-known example of a chaotic system with no equilibrium while
+non-existence of a strange attractor in such system due to its conservation. We then consider
+the parametric form of Eq. \ref{eq:line_eq1} with quadratic nonlinearities of the form,
+
+\begin{equation}
+\label{eq:line_eq2}
+  \left\{
+    \begin{array}{l}
+      \dot{x}=y\\
+      \dot{y}=a_1x+a_2yz \\
+      \dot{z}=a_3x+a_4y+a_5x^{2}+a_6y^2+a_7xy+a_8xz+a_9yz.
+    \end{array}
+  \right.
+\end{equation}
+
+The system has a line equilibrium in $(0,0,z)$ with no other
+equilibrium (i.e. the z-axis is the line equilibrium of such
+system). With the consideration of millions of combinations
+of coefficients $a_1$ through $a_9$ and initial conditions,
+an exhaustive computer search has been applied in order to
+discover the cases of which the largest Lyapunov exponent
+is greater than 0.001. For each case been found, the space
+of coefficients was searched for values that are deemed
+``elegant'' \cite{Sprott2010Elegant}, by which we mean
+that as many coefficients as possible been set to zero
+while the rests are set to $\pm 1$ if possible or otherwise
+to a small integer or decimal fraction with the fewest
+possible digits.
+In Table \ref{tab:line_01}, cases of $LE_1\sim{}LE_6$ are six
+simple cases found with only six terms.
+With some similar procedure, three other similar cases $LE_7–LE_9$
+have been also found and listed in Table \ref{tab:line_01}.
+
+There are dozens of additional cases have been found using
+the similar procedure. Nevertheless, those are just equivalent to
+cases in Table \ref{tab:line_01} with some linear transformation or
+extensions of the cases in table with more than six terms.
+
+As showed in Fig. \ref{fig:line_fig1}, attractors of these cases are
+projected onto the xy-plane and the cases showed dissipation.
+Table \ref{tab:line_01} lists the equilibrium, eigenvalues, Lyapunov
+exponent spectra and Kaplan-Yorke dimensions along with initial
+conditions that are close to the attractor.
+Cases listed in Table \ref{tab:line_01} all have dimensions only
+slightly greater than 2.0 which just as the usual cases 
+for strange attractors from three-dimensional autonomous systems.
+Among those listed in the table, the largest of which is $LE_2$ with
+$D_{KY} = 2.1927$, and no effort has been made to tune the parameters
+for maximum chaos. All the cases appear to approach chaos through a
+succession of period-doubling limit cycles, a typical example
+of which ($LE_1$) is shown in Fig. \ref{fig:line_fig2} with decreasing $a$ for
+$b = 1$. As $a$ decreasing further, the strange attractor is destroyed
+in a boundary crisis.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.6\textwidth]{chaos/line_01.png}
+\caption{\label{fig:line_fig1}
+State space plots of the cases in Table \ref{tab:line_01} projected onto the xy-plane}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.6\textwidth]{chaos/line_02.png}
+\caption{\label{fig:line_fig2}
+  The largest Lyapunov exponent and bifurcation diagram of case $LE_1$ showing a period-doubling route to chaos}
+\end{figure}
+
+Fig. \ref{fig:line_fig3} shows a cross section in the xz-plane at $y = 0$ of
+the basin of attraction for the two attractors for the typical
+case $LE_1$. Note that the cross section of the strange attractor
+nearly touches its basin boundary as is typical of lowdimensional
+chaotic flows.
+
+Eigenvalues of case $LE_1$ can be obtained from
+$\lambda(\lambda^2-z\lambda+1)=0$. Despite the one
+which equals to zero, the other eigenvalues depends
+on the value of $z$. When $z>0$, using the Routh-Hurwitz
+stability criterion, the two eigenvalues have positive parts
+and thus the positive z-axis is unstable. As showed in Fig \ref{fig:line_fig3}
+the basin of attraction of the chaotic attractor intersects
+with the line equilibrium in some portions. Nevertheless, there are
+other parts of the z-axis (for $z>0$ part) which lie in the basin
+of the stable equilibrium or that attract to infinity. The strange
+attractor is hidden in the sense that uncountable unstable points
+on the line equilibrium of which only a tiny portion intersects
+the basin of the chaotic attractor which means, from computational point of view,
+the attractor is hidden and knowledge about the line equilibrium does not
+help in its localization.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.6\textwidth]{chaos/line_03.png}
+\caption{\label{fig:line_fig3}
+Cross section of the basins of attraction of the two attractors in the xz-plane at $y = 0$ for case $LE_1$. Initial conditions in the white region lead to
+unbounded orbits, those in the red region lead to the strange attractor, and those in the light blue region lead to the line equilibrium.(For interpretation of
+the references to color in this figure legend, the reader is referred to the web version of this article.)}
+\end{figure}
+
+The stable equilibrium for $z<-2$ does not appeared in the
+basin plot for its node-like rather than a focus in the xy-plane.
+The trajectory never crosses the $y=0$ plane for $z<-2$.
+Orbits that start to the left of the equilibrium ($x < -2$) are
+pulled in the $+z$ direction for $z > -2$ and in the $-z$ direction for $z < -2$.
+However, not until starting far from the equilibrium, they do not go to infinity.
+Rather, they asymptotically approach it from the $-\chi$ side and converge to a point
+on the line that depends on the initial condition. Thus the entire negative
+z-axis is an attractor, but it is nonlinearly contracting along
+its length for $-2 < z < 0$ and nonlinearly expanding for $z < -2$.
+
+Fig. \ref{line_fig4} shows the regions of different
+dynamical behavior in the ab-parameter space, and as showed in figure, the behavior described above does not
+depend on the particular choice of parameters.
+Each pixel in the figure means a different initial condition from a Gaussian distribution
+with zero mean and unit variance.
+Thus the region in which the strange attractor (black dots) coexists with the
+stable line equilibrium (light blue background) extends
+throughout much of the parameter space. The other eight
+cases in Table \ref{tab:line_01} shows similar behavior.
+Also of interest is the fact that in cases $LE_1\sim{}LE_8$, the
+strange attractor surrounds the line equilibrium, while in
+case $LE_9$, the line equilibrium lies just outside the strange
+attractor. In none of the cases does the line equilibrium
+intersect the attractor, and thus we would not expect
+homoclinic orbits.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.6\textwidth]{chaos/line_04.png}
+\caption{\label{fig:line_fig4}
+Regions of different dynamic behavior in parameter space for case $LE_1$. Light blue represents a static equilibrium, and the black dots correspond to
+regions of chaos. Each pixel uses a different random condition thereby indicating the coexistence of static and chaotic attractors. (For interpretation of the
+references to color in this figure legend, the reader is referred to the web version of this article.)}
+\end{figure}
+
+\section{Conclusion}
+
+In conclusion, it is apparent that simple chaotic systems
+with a line equilibrium that seemed to be rare, may in fact
+be rather common. These systems belong to the newly
+introduced class of chaotic systems with hidden attractors.
+In fact they are a new category of them which have not
+been previously described.
+
+\bibliographystyle{spphys}
+\bibliography{chaos_line_equi}
