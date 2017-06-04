@@ -110,8 +110,8 @@
     :LOGBOOK:
     CLOCK: [2017-06-01 四 15:13]--[2017-06-01 四 15:16] =>  0:03
     :END:
-*** NEXT Runge-Kutta Methods
-    SCHEDULED: <2017-06-03 周六 15:00>
+*** DONE Runge-Kutta Methods
+    CLOSED: [2017-06-03 周六 20:17] SCHEDULED: <2017-06-03 周六 15:00>
     :LOGBOOK:
     CLOCK: [2017-06-03 周六 15:00]--[2017-06-03 周六 15:25] =>  0:25
     :END:
@@ -138,6 +138,13 @@
 * Personal
 
 ** Tasks 
+   
+*** NEXT TB 多周期的处理
+    SCHEDULED: <2017-06-03 周六 20:20>
+    :LOGBOOK:
+    CLOCK: [2017-06-03 周六 21:14]--[2017-06-03 周六 21:39] =>  0:25
+    CLOCK: [2017-06-03 周六 20:18]--[2017-06-03 周六 20:43] =>  0:25
+    :END:
 
 ** Projects
 
