@@ -1,0 +1,316 @@
+\chapter{Chaos System with No Equilibrium}
+\label{chap:chaosnoneequi}
+\chapterauthor{
+  Zhaochao Wei\\
+  School of Mathematics and Statistics, South-Central University for Nationalities, Wuhan 430074, PR China\\
+  \email{weizhouchao@yahoo.cn}\\
+  Sajad Jafari\\
+  Biomedical Engineering Department, Amirkabir University of Technology, Tehran 15875-4413, Iran\\
+  \email{sajadjafari@aut.ac.ir}\\
+  J.C. Sprottb\\
+  S. Mohammad Reza Hashemi Golpayegani\\
+  Biomedical Engineering Department, Amirkabir University of Technology, Tehran 15875-4413, Iran
+}
+
+\section{Introduction}
+
+In this chapter, we'll introduce rare examples of simple chaotic flows with no
+equilibrium. Such examples are of great interest recently due to litter
+knowledge of the characteristics of them. Due to non-existence of
+heteroclinic nor herteroclinic orbits, it's inapplicable for \v{S}i'lnikov theory.
+
+In Table \ref{tab:none_tbl1}, $NE_1$ as Sprott A system \cite{Sprott1994Some} is the
+oldest and best-known example for chaotic flows. Due to the belonging to 
+Nose–Hoover oscillator \cite{Hoover1995Remark} which describes
+many natural phenomena \cite{Posch1986Canonical}, Sprott A system suggests that
+such systems may have practical as well as theoretical importance. Recently,
+two other dissipative examples have been reported, which
+we call the Wei system \cite{Wei2011Dynamical} listed as $NE_2$ in Table \ref{tab:none_tbl1} and the Wang–
+Chen system \cite{Wang2012Constructing}, a simplified version of which with one fewer
+term than previously published is listed as $NE_3$ in Table \ref{tab:none_tbl1}.
+ 
+\section{General Method to Search Simple Chaos with Only One or No Equilibrium}
+\label{sec:none_gen_met}
+
+As a start, consider the general three-dimensional ODE's with quadratic nonlinearities of the form 
+$\dot{\bm{x}}=\bm{a}+\sum\limits^{3}_{i=1}\bm{b}_i\bm{x}_i+\sum\limits^{3}_{i=1}\sum^{3}_{j=1}\bm{c}_{i,j}\bm{x}_i\bm{x}_j$,
+in which $\bm{x}={x,y,z}$ is a real three-dimensional state-space variable,
+and $\bm{a},\bm{b}$ and $\bm{c}$ are real three-dimensional coefficient vectors.
+numerical procedure was to search hyperplanes of six or fewer dimensions in
+the 30-dimensional control space of coefficients for bounded
+chaotic solutions as evidenced by a positive Lyapunov exponent.
+
+Runge-Kutta integrator method is imported to do the numerical calculation. With suitable ranges for steps for each coefficients,
+altering ranges, increments, times scales and we obtain simple chaotic cases.
+
+\section{Wang-Chen System}
+
+First, a 3D chaotic autonomous system is introduced:
+
+When \(a>0\), this system has two symmetrical equlibria: \((\sqrt{a},0,0)\) and \((-\sqrt{a},0,0)\), as showed
+in Fig. \ref{fig:none_fig3}. When \(a=0\), these two symmetrical equlibria merge into one, the origin
+\((0,0,0)\). When \(a<0\), there is no equlibrium in this system, but still, the system can generate a chaotic
+attractor, as shown in Fig. \ref{fig:none_fig4}. The largest Lyapunov exponent with respect to the 
+parameter a is showed in Fig. \ref{fig:none_fig5}, which convincingly implies that the system is chaotic.
+
+
+To obtain Wang-Chen System, firstly, introduce a 3D chaotic autonomous system,
+
+\begin{equation}
+\label{eq:none_eq2}
+    \begin{array}{l}
+      \dot{x}=y\\
+      \dot{y}=z \\
+      \dot{z}=-y+3y^{2}-x^{2}-xz-a.
+    \end{array}
+  \right.
+\end{equation}
+
+By solving the equation, the equilibriums of such system are  \((\sqrt{a},0,0)\) and \((-\sqrt{a},0,0)\)
+if $a>0$ as showed in Fig. \ref{fig:none_fig3} while the two equilibriums merged into one if $a=0$.
+If $a<0$, no equilibrium for such a system. Nevertheless, chaos exists. As showed in Fig. \ref{fig:none_fig5}
+with respect to the parameter $a$, the largest Lyapunov exponent implies the existence of
+chaos convincingly.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.6\textwidth]{chaos/0p-001.jpg}
+\caption{\label{fig:none_fig3}
+3D views of the chaotic attractor of system (\ref{eq:none_eq2}) when \(a=0.01\)}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.6\textwidth]{chaos/0p005.jpg}
+\caption{\label{fig:none_fig4}
+3D views of the chaotic attractor of system (\ref{eq:none_eq2}) when \(a=0\)}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.6\textwidth]{chaos/1lle.jpg}
+\caption{\label{fig:none_fig5}
+The largest Lyapunov exponent of system}
+\end{figure}
+
+\section{Wei System}
+
+Just as what we did for Sprott E, a small perturbation on Sprott D may change
+the type and number of equilibrium.
+Sprott D system can be written as \cite{Sprott1994Some},
+
+\begin{equation}
+\label{eq:orga65b5dd}
+    \begin{array}
+      \dot{x} = -y\\
+      \dot{y} = x+z \\
+      \dot{z} = 3y^2+xz.
+    \end{array}
+  \right.
+\end{equation}
+
+After application of a small perturbation, the new form of system then be like,
+
+\begin{equation}
+\label{eq:none_eq1}
+    \begin{array}
+      \dot{x} = -y\\
+      \dot{y} = cx+z \\
+      \dot{z} = ay^2+xz-d.
+    \end{array}
+  \right.
+\end{equation}
+
+in which $a, c, d$ are real parameters. Obviously under the condition \(a = 3, c = 1, d = 0\), it's the
+original Sprott D system.
+When setting  \((a,c,d) = (2,1,0.35)\) and initial 
+value \((−1.6,0.82,1.9)\), system (\ref{eq:none_eq1}) displays a single-scroll
+chaotic attractor
+with no equilibria, as shown in Fig. \ref{fig:none_fig1}(a). 
+Lyapunov exponents are calculated as
+
+\begin{equation}
+  \begin{array}
+    \lambda_{L_1} = 0.0793\\
+    \lambda_{L_2} = 0\\
+    \lambda_{L_3} = −1.5034.
+  \end{array}
+\end{equation}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.6\textwidth]{chaos/weisys_001.png}
+\caption{\label{fig:none_fig1}
+Parameters \((a,c,d)=(2,1,0.35)\) and initial value \((−1.6,0.82,1.9)\) : (a) chaotic attractor with no equilibria in system \ref{eq:none_eq1}; (b) Poincare image projected in the x–z plane.}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.6\textwidth]{chaos/weisys_002.png}
+\caption{\label{fig:none_fig2}
+Three types of chaotic attractors of system \ref{eq:none_eq1} with parameters values \((a,c,d)\): (a)(2.55,1,−0.8); (b) (2.55,1,0) ; (c) (2.55,1,0.1) .}
+\end{figure}
+
+\section{Systemic Search for Systems with No Equilibrium}
+
+Inspired by methods mentioned before, a systemic search may be applied for
+three-dimensional chaotic systems with quadratic nonlinearities by adding
+a constant term to each non-hyperbolic (the equilibriums have eigenvalues with a real
+part equal to zero) systems. It's quite general requirement that chaotic systems
+of this type includes such a constant term since there would otherwise be at
+least one equilibrium point at $(0,0,0)$. Thus, three basic methods are used
+for chaotic systems with no equilibrium:
+
+\begin{enumerate}
+\item The first method is adding a constant term a to other nonhyperbolic systems, e.g.
+
+  \begin{equation}
+    \left\{
+    \begin{array}{l}
+      \dot{x} = y \\
+      \dot{y} = -x+z \\
+      \dot{z} = k_1x^2+k_2z^2+k_3y^2+a 
+    \end{array}
+    \right.
+  \end{equation}
+
+  where \(a=0\) has an equilibrium at \((0,0,0)\) whose eigenvalues are zero and
+  pure imaginary. Adjusting and simplifying the parameters
+  \(k_1, k_2, k_3\), and the term $a$ gives the chaotic system listed
+  as \(NE_7\) system in Table \ref{tab:none_tbl1}.
+
+\item Second method is by looking at cases where we could show algebraically that the equilibrium
+  points are imaginary. For example, any chaotic solution for a
+  parametric system such as
+
+\begin{equation}
+  \left\{
+    \begin{array}{l}
+      \dot{x} = y \\
+      \dot{y} = z \\
+      \dot{z} = k_1x+k_2y+k_3z+k_4x^2+k_5y^2+k_6z^2+k_7xy+k_8xz+k_9yz+a
+    \end{array}
+  \right.
+\end{equation}
+
+where \(k_1^2 - 4k_4a \leq 0\) is a candicate. Adjusting the parameters \(k_1,\ldots,k_9\) and a gives the system listed as \(NE_{14}\)
+in Table \ref{tab:none_tbl1}.
+
+\item The last one is by adding a constant to each of the derivatives in known chaotic systems
+  and look for solutions where the 
+  numerically calculated equilibrium do not exist. For example, Case O of reference \cite{Sprott1994Some} with added constants \(a_1, a_2\) and \(a_3\),
+
+\begin{equation}
+  \left\{
+    \begin{array}{l}
+      \dot{x} = k_1y+a_1\\
+      \dot{y} = k_2x+k_3z+a_2 \\
+      \dot{z} = k_4x+k_5xz+k_6y+a_3
+    \end{array}
+  \right.
+\end{equation}
+
+gives the system listed as \(NE_4\) in Table \ref{tab:none_tbl1}.
+\end{enumerate}
+
+In addition to the seventeen cases listed in Tabel \ref{tab:none_tbl1}, dozens of
+additional cases were found but are extensions of these
+cases with additional terms. For each case been found, the space of coefficients was searched
+for values that are deemed "elegant", which means
+as many coefficents as possible are set to zero with the others set to \(\pm{}1\) if possible
+or otherwise to a small integer or decimal fraction
+with the fewest possible digits.
+
+\begin{longtable}{|l|l|l|l|l|l|}
+  \centering
+\caption[Feasible triples for a highly variable Grid]{\label{tab:none_tbl1}
+Seventeen Simple Chaotic with No Equilibria.} \\
+
+\hline \multicolumn{1}{|c|}{\textbf{Model}} &
+\multicolumn{1}{c|}{\textbf{Equations}} & \multicolumn{1}{c|}{\textbf{a}} &
+\multicolumn{1}{c|}{\textbf{$LE_s$}} & \multicolumn{1}{c|}{\textbf{$D_{KY}$}} & \multicolumn{1}{c|}{\textbf{$(x_0,y_0,z_0)$}}\\ \hline 
+\endfirsthead
+
+\multicolumn{6}{c}%
+{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\hline \multicolumn{1}{c|}{\textbf{Equations}} & \multicolumn{1}{c|}{\textbf{a}} &
+\multicolumn{1}{c|}{\textbf{$LE_s$}} & \multicolumn{1}{c|}{\textbf{$D_{KY}$}} & \multicolumn{1}{c|}{\textbf{$(x_0,y_0,z_0)$}}\\ \hline 
+\endhead
+
+\hline \multicolumn{6}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline \hline
+\endlastfoot
+$NE_1$ & $\dot{x} = y$ & 1.0 & 0.0138,0,−0.0138 & 3.0000 & (0,5,0)\\
+ & $\dot{y} = −x − zy$ &  &  &  & \\
+ & $\dot{z} = y^2 − a$ &  &  &  & \\
+\hline
+\(NE_2\) Wei & \(\dot{x} = − y\) & 0.35 & 0.0776,0,−1.5008 & 2.0517 & (0,0.4,1)\\
+ & \(\dot{y} = x + z\) &  &  &  & \\
+ & \(\dot{z} = 2y^2 + xz − a\) &  &  &  & \\
+\hline
+\(NE_3\) Simplified Wang–Chen & \(\dot{x} = y\) & 1.0 & 0.0522,0,−2.6585 & 2.0196 & (1,1,− 1)\\
+ & \(\dot{y} = z\) &  &  &  & \\
+ & \(\dot{z} = − y + 0.1x_2 + 1.1xz + a\) &  &  &  & \\
+\hline
+\(NE_4\) & \(\dot{x} = − 0 . 1 y + a\) & 1.0 & 0.0235,0,−8.480 & 2.0028 & (−8.2,0,−5)\\
+ & \(\dot{y} = x + z\) &  &  &  & \\
+ & \(\dot{z} = xz − 3 y\) &  &  &  & \\
+\hline
+\(NE_5\) & \(\dot{x} = 2y\) & 2.0 & 0.0168,0,−0.3622 & 2.0465 & (0.98,1.8,−0.7)\\
+ & \(\dot{y} = − 2x − z\) &  &  &  & \\
+ & \(\dot{z} = − y^2 + z^2 + a\) &  &  &  & \\
+\hline
+\(NE_6\) & \(\dot{x} = y\) & 0.75 & 0.0280,0,−3.4341 & 2.0082 & (0,3,−0.1)\\
+ & \(\dot{y} = z\) &  &  &  & \\
+ & \(\dot{z} = −y − xz − yz − a\) &  &  &  & \\
+\hline
+\(NE_7\) & \(\dot{x} = y\) & 2.0 & 0.0252,0,−6.8524 & 2.0037 & (0,2.3,0)\\
+ & \(\dot{y} = − x + z\) &  &  &  & \\
+ & \(\dot{z} = − 0.8x^2 + z^2 + a\) &  &  &  & \\
+\hline
+\(NE_8\) & \(\dot{x} = y\) & 1.3 & 0.0314,0,−10.2108 & 2.0031 & (0,0.1,0)\\
+ & \(\dot{y} = − x − yz\) &  &  &  & \\
+ & \(\dot{z} = xy + 0.5x^2 − a\) &  &  &  & \\
+\hline
+\(NE_9\) & \(\dot{x} = y\) & 0.55 & 0.0504,0,−0.3264 & 2.1544 & (0.5,0,0)\\
+ & \(\dot{y} = −x − yz\) &  &  &  & \\
+ & \(\dot{z} = −xz + 7x^2 − a\) &  &  &  & \\
+\hline
+\(NE_{10}\) & \(\dot{x} = z\) & 0.6 & 0.0061,0,−1.3002 & 2.0047 & (1,0.7,0.8)\\
+ & \(\dot{y} = z − y\) &  &  &  & \\
+ & \(\dot{z} = − 0.9y − xy + xz + a\) &  &  &  & \\
+\hline
+\(NE_{11}\) & \(\dot{x} = y\) & 1.0 & 0.0706,0,−0.6456 & 2.1094 & (0,1.6,3 )\\
+ & \(\dot{y} = − x + z\) &  &  &  & \\
+ & \(\dot{z} = z − 2xy − 1 . 8xz − a\) &  &  &  & \\
+\hline
+\(NE_{12}\) & \(\dot{x} = z\) & 0.1 & 0.0654,0,−2.0398 & 2.0321 & (0.5,0,−1)\\
+ & \(\dot{y} = x − y\) &  &  &  & \\
+ & \(\dot{z} = − 4x 2 + 8xy + yz + a\) &  &  &  & \\
+\hline
+\(NE_{13}\) & \(\dot{x} = − y\) & 0.4 & 0.1028,0,−2.1282 & 2.0483 & (2.5,0,0)\\
+ & \(\dot{y} = x + z\) &  &  &  & \\
+ & \(\dot{z} = xy + xz + 0 . 2 yz − a\) &  &  &  & \\
+\hline
+\(NE_{14}\) & \(\dot{x} = y\) & 1.0 & 0.0532,0,−11.8580 & 2.0045 & (1,0,−4)\\
+ & \(\dot{y} = z\) &  &  &  & \\
+ & \(\dot{z} = x^2 − y^2 + 2xz + yz + a\) &  &  &  & \\
+\hline
+\(NE_{15}\) & \(\dot{x} = y\) & 1.0 & 0.1101,0,−1.3879 & 2.0793 & (0,1,−4.9)\\
+ & \(\dot{y} = z\) &  &  &  & \\
+ & \(\dot{z} = x^2 − y^2 + xy + 0.4xz + a\) &  &  &  & \\
+\hline
+\(NE_{16}\) & \(\dot{x} = −0.8x − 0.5y^2 + xz + a\) & 1.0 & 0.0607,0,−0.1883 & 2.3224 & (0,1,−1)\\
+ & \(\dot{y} = −0.8y − 0.5z^2 + yx + a\) &  &  &  & \\
+ & \(\dot{z} = −0.8z − 0.5x^2 + zy + a\) &  &  &  & \\
+\hline
+\(NE_{17}\) & \(\dot{x} = −y − z^2 + 2.3xy + a\) & 2.0 & 0.2257,0,−1.7477 & 2.1292 & (1,−1,0)\\
+ & \(\dot{y} = −z − x^2 + 2.3yz + a\) &  &  &  & \\
+ & \(\dot{z} = −x − y^2 + 2.3zx + a\) &  &  &  & 
+\hline
+\end{longtable}
+
+\bibliographystyle{spphys}
+\bibliography{chaos_none_equi}
