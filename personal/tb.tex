@@ -1,0 +1,327 @@
+% Created 2017-05-16 周二 21:53
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{ctexart}
+                                      \usepackage[utf8]{inputenc}
+                                      \usepackage[T1]{fontenc}
+                                      \usepackage{fixltx2e}
+                                      \usepackage{graphicx}
+                                      \usepackage{longtable}
+                                      \usepackage{float}
+                                      \usepackage{wrapfig}
+                                      \usepackage{rotating}
+                                      \usepackage[normalem]{ulem}
+                                      \usepackage{amsmath,bm,mathrsfs}
+                                      \usepackage{textcomp}
+                                      \usepackage{marvosym}
+                                      \usepackage{wasysym}
+                                      \usepackage{amssymb}
+                                      \usepackage{booktabs}
+                                      \usepackage[colorlinks,linkcolor=black,anchorcolor=black,citecolor=black]{hyperref}
+                                      \tolerance=1000
+                                      \usepackage{listings}
+                                      \usepackage{xcolor}
+                                      \lstset{
+                                      %行号
+                                      numbers=left,
+                                      %背景框
+                                      framexleftmargin=10mm,
+                                      frame=none,
+                                      %背景色
+                                      %backgroundcolor=\color[rgb]{1,1,0.76},
+                                      backgroundcolor=\color[RGB]{245,245,244},
+                                      %样式
+                                      keywordstyle=\bf\color{blue},
+                                      identifierstyle=\bf,
+                                      numberstyle=\color[RGB]{0,192,192},
+                                      commentstyle=\it\color[RGB]{0,96,96},
+                                      stringstyle=\rmfamily\slshape\color[RGB]{128,0,0},
+                                      %显示空格
+                                      showstringspaces=false
+                                      }
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 25.1.1 (Org mode 9.0.5)}, 
+ pdflang={English}}
+\begin{document}
+
+\tableofcontents
+
+\section{关于跨周期的处理}
+\label{sec:orgcea9333}
+
+\subsection{说明}
+\label{sec:orgf13e268}
+
+\begin{enumerate}
+\item 研报中有一个概念：日线和小时线的择时效果不同，小时线反应更加迅速和准确，日线相对于小时线择时，
+能够 \textbf{去除噪音的干扰} ，从而择时更加准确，而小时线的买卖点则更加及时。在原有不同的框架和周期
+数据上， \textbf{切换择时信号和操作频率} 往往能够起到较好的择时效果。
+\item CTA 领域中，也有类似理论，叫做 \emph{跨周期引用} ，一般是在额定交易周期下，引用一个更大周期（稳定）
+数据，通过此数据做一些 \textbf{方向性保护} ，比如日线是多单状态，分钟线不要开空单。
+\end{enumerate}
+
+\subsection{实现方式}
+\label{sec:org2bc8983}
+
+
+\subsubsection{原理}
+\label{sec:orgafa4ca1}
+
+新编一个函数，用来根据小周期下的数据推算出大周期的 BAR 数据。返回的大周期数据将以序列变量的形式
+保留在对应的小周期 K 线上，以便以后调用。
+
+\subsubsection{函数}
+\label{sec:org824b344}
+
+\begin{enumerate}
+\item 函数 \texttt{MtBar} 返回数值类型为数值类型
+
+\begin{verbatim}
+Params
+        Numeric TimeFrame(1440);    
+        // 目标时间周期：月线=40320，周线=10080，日线=1440，4 小时线=240
+        // 其他 1 小时内的周期等于相应的分钟数，如：1 小时=60，30 分钟=30。。。
+        // 支持不规则分钟数，如 3 分钟，8 分钟，之类都行
+
+        Numeric BarsBack(1);
+        // 目标时间周期 BAR 偏移：
+        // 1--表示将目标时间周期下的前 1 根 K 线数据作为与当前 Bar 对应的目标时间周期下的 K 线数据
+        // 0--表示将目标时间周期下的截止到目前为止的数据转换为与当前 BAR 对应的目标时间周期下 K 线数据
+
+        NumericRef oCurBar;                 // 目标时间周期下的 Bar 索引
+        NumericRef oOPenHT;         // 目标时间周期下的开盘价
+        NumericRef oHighHT;         // 目标时间周期下的最高价
+        NumericRef oLowHT;          // 目标时间周期下的最低价
+        NumericRef oCloseHT;        // 目标时间周期下的收盘价
+        NumericRef oVolHT;          // 目标时间周期下的成交量
+        NumericRef oOpenIntHT;      // 目标时间周期下的持仓量
+
+Vars
+        NumericSeries barCnt;
+        NumericSeries CurBar;
+        NumericSeries barCntSum;
+        NumericSeries OpenHT;
+        NumericSeries HighHT;
+        NumericSeries LowHT;
+        NumericSeries CloseHT;
+        NumericSeries VolHT;
+        NumericSeries OpenIntHT;
+        Numeric CurTime;
+        Numeric PreTime;
+        bool condition(false);
+        Numeric i;
+Begin
+        If (TimeFrame == 40320)                 // 月线
+        {
+                CurTime = Month;
+                PreTime = Month[1];
+        }
+        Else If (TimeFrame == 10080)                        // 周线
+        {
+                CurTime = IntPart(DateDiff(19700105,Date)/7);
+                PreTime = IntPart(DateDiff(19700105,Date[1])/7);
+        }
+        Else                                                                        // 其他时间周期
+        {
+                CurTime = IntPart((DateDiff(19700105,date)*1440 + Hour*60 + Minute)/TimeFrame);
+                PreTime = IntPart((DateDiff(19700105,date[1])*1440 + Hour[1]*60 + Minute[1])/TimeFrame);
+        } 
+        condition = CurTime != PreTime;
+
+        If (CurrentBar==0)                // 如果是第一根 Bar, CurBar=0
+        {
+                barCnt = 0;
+                CurBar = 0;
+                OpenHT = Open;
+                HighHT = High;
+                LowHT = Low;
+                CloseHT = Close;
+                VolHT = Vol;
+                OpenIntHT = OpenInt;
+        }
+        Else
+        {
+                If(Condition)                
+                // 如果在目标周期下，属于另一根 K 线，则 CurBar 加 1
+                {
+                        barCnt = 1;
+                        CurBar = CurBar[1] + 1;
+                        OpenHT = Open;
+                        HighHT = High;
+                        LowHT = Low;
+                        VolHT = Vol;
+                }Else
+                // 如果在目标周期下，属于同一根 K 线，则 CurBar 不变，但最高价和最低价要记录价格的变化，成交量要累加
+                {
+                        barCnt = barCnt[1] + 1;
+                        CurBar = CurBar[1];
+                        OpenHT = OpenHT[1];
+                        HighHT = Max(HighHT[1],High);
+                        LowHT = Min(LowHT[1],Low);
+                        VolHT = VolHT[1] + Vol;
+                }
+                // 收盘价和持仓量总是取最新值
+                CloseHT = Close;
+                OpenIntHT = OpenInt;
+        }
+
+        // 上面的程序，在每根小周期的 K 线上，记录了它所属的大时间周期下的开高低收等值的变化。
+        // 接下来，要把在大的时间周期级别上，属于同一根 K 线的开高低收这些数据，记录在这一组小周期 K 线的最后一根上。
+        barCntSum = barCnt ;
+        If(BarsBack == 0)
+        // 如果 Bar 偏移参数为 0，则取每根小周期 K 线上保留的大时间周期截止到这根小周期 K 线为止的 BAR 数据
+        {
+                barCntSum = 0 ;
+        }Else If(BarsBack == 1)
+        // 如果 Bar 偏移参数为 1，则取大时间周期的上一根 K 线的 BAr 数据
+        {
+                barCntSum = barCnt ;
+        }Else
+        // 如果 BAR 偏移参数为其他，则取大时间周期的指定偏移后的那根 K 线的 BAR 数据
+        {
+                For i = 2 To BarsBack
+                {
+                        barCntSum = barCntSum + barCnt[barCntSum];
+                }
+        }
+
+        // 最后将相应的 K 线数据作为引用参数返回
+        oCurBar = CurBar;
+        oOpenHT = OpenHT[barCntSum];
+        oHighHT = HighHT[barCntSum];
+        oLowHT = LowHT[barCntSum];
+        oCloseHT = CloseHT[barCntSum];
+        oVolHT = VolHT[barCntSum];
+        oOpenIntHT = OpenIntHT[barCntSum];
+        Return barCnt;
+End
+\end{verbatim}
+
+\item 实现跨周期的求和函数 \texttt{MtSummation}
+
+\begin{verbatim}
+Params
+        NumericSeries Price(1);
+        NumericSeries BarCnt(0);
+        Numeric Length(10);
+Vars
+        NumericSeries SumValue(0);
+        Numeric i;
+        Numeric j(0);
+Begin
+        SumValue = 0;
+        For i = 1 to Length
+        {
+                If (Price[j] <> InvalidNumeric)
+                {
+                        SumValue = SumValue + Price[j];
+                        j = j + BarCnt[j];
+                }
+                else Break;
+        }
+        Return SumValue;
+End
+\end{verbatim}
+
+\item 实现计算跨周期简单移动平均的函数 \texttt{MtMa}
+
+\begin{verbatim}
+Params
+        Numeric TimeFrame(1440);        // 目标时间周期参数，参数说明参见 MtBar
+        Numeric BarsBack(1);                // 目标时间周期 BAR 偏移参数，说明见 MtBar 函数
+        Numeric Length(10);                        // 均线周期
+        NumericRef oMA;             // 以目标时间周期下的 K 线数据计算出的移动平均线
+Vars
+        NumericSeries mtBarCnt;
+        NumericSeries mtClose;
+        Numeric refCurBar;
+        Numeric refOpen;
+        Numeric refHigh;
+        Numeric refLow;
+        Numeric refClose;
+        Numeric refVol;
+        Numeric refOpenInt;
+
+        Numeric SumValue(0);
+        Numeric i;
+        Numeric j(0);
+Begin
+        mtBarCnt = MtBar(TimeFrame,BarsBack,refCurBar,refOpen,refHigh,refLow,refClose,refVol,refOpenInt);
+        mtClose = refClose;
+
+        SumValue = MtSummation(mtClose,mtBarCnt,Length);
+        oMA = SumValue/Length;
+        Return mtBarCnt;
+End
+\end{verbatim}
+\end{enumerate}
+\subsubsection{应用}
+\label{sec:org166d74b}
+\begin{enumerate}
+\item 以日线的均线交叉判断大趋势，然后在 5 分钟图上做交易
+\item 日线的短期均线上穿长期均线，只做多，不做空；反之则只做空，不做多
+\item 确定大趋势后，再根据 5 分钟图来判断小趋势，以决定进场时机。我们仍然用均线来判断，在多头趋势下，
+如果 5 分钟的短期均线上穿长期均线，进场做多,反穿出场，但不反手做空；空头趋势下，类似。
+
+\begin{verbatim}
+Params
+        Numeric TimeFrame(1440);        // 目标时间周期参数，参数说明参见 MtBar
+        Numeric BarsBack(1);                // 目标时间周期 BAR 偏移参数，说明见 MtBar 函数
+
+        Numeric Length1(10);                // 大周期的短期均线周期                
+        Numeric Length2(20);                // 大周期的长期均线周期
+        Numeric Length3(10);                // 小周期的短期均线周期
+        Numeric Length4(20);                // 小周期的长期均线周期
+        Numeric Lots(1);
+Vars
+        NumericSeries MA1;
+        NumericSeries MA2;
+        Numeric oMA1;
+        Numeric oMA2;
+
+        NumericSeries MA3;
+        NumericSeries MA4;
+Begin
+        MtMa(TimeFrame,BarsBack,Length1,oMA1);
+        MA1 = oMA1;
+        PlotNumeric("MA1",MA1);
+        MtMa(TimeFrame,BarsBack,Length2,oMA2);
+        MA2 = oMA2;
+        PlotNumeric("MA2",MA2);
+        MA3 = AverageFC(Close,Length3);
+        MA4 = AverageFC(Close,Length4);
+        PlotNumeric("MA3",MA3);
+        PlotNumeric("MA4",MA4);
+
+
+        If (MA1>MA2)                // 大周期均线金叉，多头趋势
+        {
+                if (MarketPosition!=1 and MA3[1]>MA4[1])
+                {
+                        Buy(Lots,Open);
+                }
+                if (MarketPosition==1 and MA3[1]<MA4[1])
+                {
+                        Sell(Lots,Open);
+                }
+        }
+        If (MA1<MA2)                // 大周期均线死叉，空头趋势
+        {
+                if (MarketPosition!=-1 and MA3[1]<MA4[1])
+                {
+                        SellShort(Lots,Open);
+                }
+                if (MarketPosition==-1 and MA3[1]>MA4[1])
+                {
+                        BuyToCover(Lots,Open);
+                }
+        }
+End
+\end{verbatim}
+\end{enumerate}
+\end{document}

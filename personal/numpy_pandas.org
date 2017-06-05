@@ -1,0 +1,353 @@
+* =numpy= 属性
+
+  1. =shape=
+
+  2. =ndim=
+
+  3. =size=
+
+     #+BEGIN_SRC ipython
+       import numpy as np
+       array = np.arrray([1,2,3,4])
+
+       array.shape
+       np.shape(array)
+
+       array.ndim
+       np.shape(array)
+
+       array.size
+       np.size(array)
+     #+END_SRC
+
+* 创建 =array=
+
+  1. =np.zeros()=
+  2. =np.ones()=
+  3. =np.zeros()=
+  4. =np.arange()=
+  5. =np.linspace()=
+  6. =np.reshape()=
+
+  #+BEGIN_SRC ipython
+    import numpy as np
+
+    # 简单创建方式
+    a = np.array([1,2,3,4])
+
+    # 指定类型
+    # 类型包括 int float
+    a = np.array([1,2,3,4], dtype=np.int)
+    print(a.dtype)
+
+    # 生成零矩阵
+    np.zero((3,4))
+
+    # 生成矩阵元均为 1 的矩阵
+    np.ones((3,4))
+
+    # 生成空矩阵
+    np.empty((3,4))
+
+    # 生成有序数列
+    np.arange(1, 12, 2)
+
+    # 线段分割
+    np.linspace(1, 10, 20)
+  #+END_SRC
+* =numpy= 基础运算
+
+  #+BEGIN_SRC ipython
+    import numpy as np
+
+    a = np.array([10, 20,30, 40])
+    b = np.arange(4)
+
+    # 简单运算
+    c = a-b
+
+    # 乘方
+    d = b**2
+    e = b**5
+
+    # 三角函数
+    f = 10*np.sin(a)
+
+    # 判断
+    print(f > 0)
+    print(f[f>0])
+
+    # 矩阵运算
+    b = np.arange(4).reshape((2,2))
+    # 逐个相乘
+    c = a*b
+    # 矩阵点乘
+    c_dot = np.dot(a,b)
+
+    # 随机数
+    a = np.random.random((2,4))
+    # 求和
+    np.sum(a)
+    # 最大值
+    np.max(a)
+    np.max(a, axis = 0)
+    np.max(a, axis = 1)
+    # 最小值
+    np.min(a)
+    np.min(a, axis = 0)
+    np.min(a, axis = 1)
+
+    # 最小值出现的索引
+    np.argmin(a)
+    # 最大值出现的索引
+    np.argmax(a)
+
+    # 常用统计算法
+    np.mean(a)
+    np.average(a)
+    np.cumsum(a)
+    np.median(a)
+
+    # 找出非 0 值，返回对应非 0 值的对应的每个维度的 index
+    np.nonzero(a)
+
+    # 排序
+    np.sort(a)
+
+    # 转置
+    a.T
+    np.transpose(a)
+
+    # 矩阵截取
+    # 小于 1 的数赋值 1
+    # 大于 3 的数赋值 3
+    np.clip(b, 1,3)
+  #+END_SRC
+* =numpy= 索引
+
+  #+BEGIN_SRC ipython
+    import numpy as np
+
+    A = np.arange(3, 15).reshape(3,4)
+    print(A[2])
+    print(A[1][1])
+    print(A[1,1])
+    print(A[:,1])
+
+    # 输出 A 的每一行
+    for row in A:
+        print(row)
+
+    # 输出 A 的每一列
+    for column in A.T:
+        print(column)
+
+    # 输出每个元素
+    # flat 是 flatiter 是迭代器
+    # flatten() 是函数
+    for item in A.flat:
+        print(item)
+  #+END_SRC
+
+* =numpy= 中 =array= 合并
+  
+  #+BEGIN_SRC ipython
+    import numpy as np
+
+    A = np.array([1,1,1])
+    B = np.array([2,2,2])
+
+    C = np.vstack((A,B))
+    D = np.hstack((A,B))
+
+    A = np.array([1,1,1])[:,np.newaxis]
+    B = np.array([2,2,2])[:,np.newaxis]
+    C = np.hstack((A,B))
+
+    D = np.concatenate((A,A,B), axis=0)
+  #+END_SRC
+ 
+* =numpy= 中 =array= 分割 
+  *numpy 中的 axis 理解* ： 譬如某个 array 的 shape 是 (3,4,5)
+  那么 aixs = 0,1,2 分别对应 3,4,5，在应用 numpy 中的函数的时候，
+  分别沿着不同的 axis 去做运算。
+
+  #+BEGIN_SRC ipython
+    import numpy as np
+
+    A = np.arange(12).reshape((3,4))
+    np.split(A, 2)
+
+    np.split(A, axis=1)
+  #+END_SRC
+
+* =numpy= 的 copy 和 deep copy
+  
+  #+BEGIN_SRC ipython
+    import numpy as np
+    A = np.arange(12)
+    B = A
+    C = A
+    D = B
+
+    print(A is B)
+    print(B is A)
+    print(C is A)
+
+    D = A.copy()
+    print(A is D)
+
+  #+END_SRC
+* =pandas= 基础
+
+  #+BEGIN_SRC ipython
+    import pandas as pd
+    import numpy as np
+
+    s = pd.Series([1,2,3,np.nan,6])
+    dates = pd.date_range('2016-01-01', peridos=6)
+
+    df = pd.DataFrame(np.random.randn(6,4), index=dates)
+    df2 = pd.DataFrame({'A': 1, 'B':np.nan, 'C':pd.date_range('2015-12-12',periods=5), 'D':pd.Series(1.0, index=list(range(5)))})
+
+    df2.describe()
+    df2.sort_index(axis=1, ascending=False)
+    df2.sort_values(by='C', acending=False)
+  #+END_SRC
+* =pandas= 数据选择
+
+  1. 索引
+  2. select by label
+  3. select by position
+  4. mixed selection
+  5. boolean index
+
+  #+BEGIN_SRC ipython
+    import pandas as pd
+    import numpy as np
+
+    dates = pd.date_range('20130101',periods=6)
+    df = pd.DataFrame(np.arange(24).reshape(6,4), index=dates, columns=['A', 'B', 'C', 'D'])
+
+    print(df.A)
+    print(df['A'])
+
+    #select by label: loc
+    print(df.loc['20130102'])
+    print(df.loc[:,['A', 'B']])
+    print(df.loc['20130102', ['A', 'B']])
+
+    #select by position: iloc
+    print(df.iloc[3])
+    print(df.iloc[3:5, 1:3])
+    print(df.iloc[[1,3,5], 1:3])
+
+    # mixed selection: ix
+    print(df.ix[:3, ['A', 'C']])
+    # boolean indexing
+    print(df[df.A >8])
+  #+END_SRC
+* =pandas= 设置值
+
+  #+BEGIN_SRC python
+    import numpy as np
+    import pandas as pd
+
+    dates = pd.date_range('20130101', periods=6)
+    df = pd.DataFrame(np.arange(24).reshape(6,4), index=dates, columns=['A', 'B', 'C', 'D'])
+
+    df.iloc[2,2] = 111
+    df.loc['20130101', 'B'] = 222
+    df[df.A > 4] = 0
+    df.B[df.A > 4] = 0
+    df['F'] = np.nan
+    df['E'] = pd.Series([1,2,3,4,5,6], index=dates)
+  #+END_SRC
+* =pandas= 处理丢失数据 
+
+  #+BEGIN_SRC python
+    import numpy as np
+    import pandas as pd
+
+    dates = pd.date_range('20130101', peroids=6)
+    df = pd.DataFrame(np.arange(24).reshape(6,4),index=dates, columns=['A', 'B', 'C', 'D'])
+    df.iloc[0,1] = np.nan
+    df.iloc[1,2] = np.nan
+
+    # axis=0 表示行中含有 NaN， 则将该行丢弃
+    print(df.dropna(axis=0), how='any') # any 表示只要有 NaN，就处理，all 表示需要所有元素均为 NaN 才处理
+
+    # 如果遇到 NaN，用 value 填充
+    print(df.fillna(value=0))
+
+    print(df.isnull())
+    print(np.any(df.isnull()) == True)
+  #+END_SRC
+* =pandas= 导入导出
+  
+  | 导入函数       | 导出函数     |
+  |----------------+--------------|
+  | read_csv       | to_csv       |
+  | read_excel     | to_excel     |
+  | read_hdf       | to_hdf       |
+  | read_sql       | to_sql       |
+  | read_json      | to_json      |
+  | read_msgpack   | to_msgpack   |
+  | read_html      | to_html      |
+  | read_gbq       | to_gbq       |
+  | read_stata     | to_stata     |
+  | read_sas       | to_sas       |
+  | read_clipboard | to_clipboard |
+  | read_pickle    | to_pickle    |
+* =pandas= 合并 =concat=
+
+  #+BEGIN_SRC ipython
+    import pandas as pd
+
+    df1 = pd.DataFrame(np.arange(12).reshape(3,4), columns = ['a', 'b', 'c', 'd'])
+    df2 = pd.DataFrame(np.arange(12).reshape(3,4)**2, columns = ['a', 'b', 'c', 'd'])
+    df3 = pd.DataFrame(np.arange(12).reshape(3,4)**3, columns = ['a', 'b', 'c', 'd'])
+
+    # concatenating
+    res = pd.concat([df1, df2, df3], axis=0)
+    res = pd.concat([df1, df2, df3], axis=0, ignore_index=True)
+
+    # join, ["inner", "outer"]
+    df4 = pd.DataFrame(np.arange(12).reshape(3,4)**2, columns = ['a', 'b', 'c', 'd'], index=[1,2,3])
+    df5 = pd.DataFrame(np.arange(12).reshape(3,4)**3, columns = ['b', 'c', 'd', 'e'], index=[2,3,4])
+
+    res2 = pd.concat([df4,df5], join="outer")
+    res3 = pd.concat([df4,df5], join="inner")
+
+    # join axis
+    res4 = pd.concat([df4, df5], axis = 1)
+
+    df4.append([df5])
+  #+END_SRC
+* =pandas= 合并之 =merge=
+
+  #+BEGIN_SRC ipython
+    In [24]: import pandas as np
+    In [25]: import numpy as np
+    In [26]: left = pd.DataFrame({'key':['K0', 'K1', 'K2', 'K3'],
+        ...:                     'A':['A0', 'A1', 'A2', 'A3'],
+        ...:                     'B':['B0', 'B1', 'B2', 'B3']})
+
+    In [27]: right = pd.DataFrame({'key':['K0', 'K1', 'K2', 'K3'],
+        ...:                     'C':['C0', 'D1', 'C2', 'C3'],
+        ...:                     'D':['D0', 'D1', 'D2', 'D3']})
+
+    In [28]: pd.merge(left, right, on='key')
+
+    In [36]: left = pd.DataFrame({'key':['K0', 'K1', 'K2', 'K3'],
+        ...:                         'key2':['K0', 'K0', 'K0', 'K0'],
+        ...:                     'A':['A0', 'A1', 'A2', 'A3'],
+        ...:                     'B':['B0', 'B1', 'B2', 'B3']})
+
+    In [32]: right = pd.DataFrame({'key':['K0', 'K1', 'K2', 'K3'],
+        ...:                         'key2':['K0','K0','K0', 'K0'],
+        ...:                     'C':['C0', 'D1', 'C2', 'C3'],
+        ...:                     'D':['D0', 'D1', 'D2', 'D3']})
+
+    In [37]: pd.merge(left, right, on=['key', 'key2'])
+  #+END_SRC
