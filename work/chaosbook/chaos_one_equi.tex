@@ -1,0 +1,765 @@
+\chapter{Chaos System with Only One Stable Equilibrium}
+\chapterauthor{
+  Xiong Wang\\
+  Institute for Advanced Study, Shenzhen University, Shenzhen, Guangdong 518060,
+  P.R. China\\
+  \email{wangxiong8686@szu.edu.cn}\\
+  Guanrong Chen\\
+  IDepartment of Electronic Engineering, City University of Hong Kong, Hong Kong
+  Special Administrative Region\\
+  \email{eegchen@cityu.edu.hk}
+  MALIHE MOLAIE and SAJAD JAFARI\\
+  Department of Biomedical Engineering,\\
+  Amirkabir University of Technology, 424 Hafez Ave.,\\
+  Tehran 15875-4413, Iran\\
+  \email{sajadjafari@aut.ac.ir}\\
+  JULIEN CLINTON SPROTT\\
+  Department of Physics, University of Wisconsin,\\
+  Madison, WI 53706, USA\\
+  S. MOHAMMAD REZA HASHEMI GOLPAYEGANI\\
+  Department of Biomedical Engineering,\\
+  Amirkabir University of Technology, 424 Hafez Ave.,\\
+  Tehran 15875-4413, Iran
+}
+
+\abstract{
+   In this chapter we'll introduce new chaos systems with only one
+   equilibrium for a three-dimensional autonomous quadratic system.
+   New systems are of non-hyperbolic type, therefore the familiar 
+   \v{S}i'lnikov homoclinic criterion is not applicable. Due to positive
+   largest Lyapunov exponents, fractional dimensions, continuous broad
+   frequency spectrums, and period-doubling routes, new systems being
+   demonstrated are chaotic.}
+
+\section{Introduction}
+\label{sec:chaosoneequi_intro}
+It's quite common to see attractors in nature world. A kind of common attractors are zero-dimensional point
+attractors. Due to dissipations from internal friction, thermodynamic difussion, energy or material loss 
+and other causes, dynamical systems in the physical world are by nature dissipative. Orbits of a dissipative 
+dynamical system will then shrink into zero-volumn subsets in the state space as times goes to infinity. 
+
+In the phase space, besides the zero-dimensional point attractors, there also exist one-dimensional periodic-cycle 
+attractors called \emph{limit cycles} if they are limiting sets, which an orbit circles around.
+
+Point attractor and limit cycles are the most common attractors with integer dimensions and regular structure. 
+Besides aforementioned attractors, there also exist attractor which can be called \emph{strange} if it has a non-integer
+dimension. Most systems with strange attractors have at least one unstable equilibrium. 
+In addition to Sprott system \cite{Sprott1993,Sprott1994,Sprott1997,Sprott2000},
+the Lorenz system \cite{Lorenz1963} and the Chen system \cite{Chen1999,Ueta2000} both have two unstable saddle-foci and
+one unstable node, which can generate a two-wing butterfly-shaped strange attractor, usually referred to as 
+a \emph{chaotic attractor}, for its special properties characterized by sensitive dependence on initial conditions.
+Of course, it's known that there are also strange but non-chaotic attractors, depending on the definitions used.
+
+In the following, we'd like to discuss simple systems (say, each is 3D autonomous with only quadratic
+nonlinearities)\cite{Wang2013c} which can have all these three types of attractors concurrently.
+
+\section{\v{S}i'lnikov Chaos}
+\label{sec:chaosoneequi_silk}
+
+For 3D autonomous hyperbolic type of chaotic
+systems, a commonly accepted criterion for proving the existence
+of chaos is due to \v{S}i'lnikov \cite{Ovsyannikov1987,Shilnikov1997,Silva1993,Sun2007,Ovsyannikov1992,Ovsyannikov1986,Shilnikov2001}, which has a slight
+extension recently \cite{Chen2009}.
+
+\begin{theorem}(\cite{Shilnikov1997,Silva1993}) If a $3D$ given system $\dot{x}=F(x)$ has two equilibrium points
+$E_{1},$\ $E_{2}$, of type saddle-focus, i.e. the eigenvalues of
+the Jacobi matrix associated to the system in these points are
+$\gamma_{k}\in\mathbb{R}$ and $ \alpha_{k}\pm
+i\beta_{k}\in\mathbb{C}$, $k=1,2,$ such that
+
+\begin{equation}\label{horse2}
+\alpha_{1}\alpha_{2}>0 \ \ or \ \ \gamma_{1}\gamma_{2}>0
+\end{equation}
+and (the Shilnikov inequality)
+\begin{equation}\label{horse1}
+|\gamma_{k}|>|\alpha_{k}|, k=1,2, \end{equation}
+
+\noindent and if the system has a heteroclinic orbit connecting
+the equilibrium points $E_{1}$ and $E_{2}$, then the Poincar\'{e}
+map defined on a transversal section of the flow in a neighborhood
+of the heteroclinic orbit presents chaos of horseshoe type.
+\end{theorem}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=6cm]{chaos/tsg-ysg}\\
+  \caption{Illustration of typical homoclinic and heteroclinic orbits in $R^3$. (a) Homoclinic orbit based on a saddle-focus, and the existence of this orbit forms  the basis of the homoclinic \v{S}i'lnikov method; (b) Heteroclinic orbit based on two saddle-foci, and the existence of this orbit forms  the basis of the heteroclinic \v{S}i'lnikov method.\cite{Shilnikov1997,Silva1993}}
+\end{figure}
+
+Chaos in the \v{S}i'lnikov type of 3D
+autonomous quadratic dynamical systems may be classified into three subclasses:
+
+$\bullet$ chaos of the \v{S}i'lnikov homoclinic-orbit type;
+
+$\bullet$ chaos of the \v{S}i'lnikov heteroclinic-orbit type;
+
+$\bullet$ chaos of the hybrid type with both \v{S}i'lnikov
+homoclinic and heteroclinic orbits.
+
+In this classification, a system is required to have at least one saddle-focus type of equilibrium, which belongs to the hyperbolic type at large. Most the classical chaotic systems belong to this \v{S}i'lnikov type.
+In \cite{Silva1993}, it has even been conjectured that "lurking behind most chaotic behavior is the existence of some homoclinic orbit or heteroclinic loop, making the significance of the \v{S}i'lnikov approach quite evident."
+Concerning about this conjecture, will some homoclinic orbit or heteroclini loop be so essential for generating chaos? If so, it is important to provide a proof. However, the \v{S}i'lnikov theorem is only a sufficient condition, not a necessary one. If not, it is also important to give an example. Let us consider an extremely special case: is it possible for a system with only one stable equilibrium to generate chaos?
+
+\begin{table}[htbp!]
+  \centering
+ \caption{\label{t4.1}Equilibria and eigenvalues of several typical Sprott
+   systems.}
+ \begin{tabular}{c c c c}\\[-2pt]
+\hline
+Systems & Equations & Equilibria & Eigenvalues \\[6pt]
+\hline\\[-5pt]
+
+Sprott& $\dot x=-y$&$(0,0,0)$ &$0, \pm i$ \\[1pt]
+Case D &$\dot y=x+z$&{}&{}\\[2pt]
+{} &$\dot z=xz+3y^2$ &{} &{} \\\hline\\[-5pt]
+
+Sprott& $\dot x=yz$&$(0.25, 0.0625, 0)$ &$-1, \pm 0.5i$ \\[1pt]
+Case E &$\dot y=x^2-y$&{}&{}\\[2pt]
+{} &$\dot z=1-4x$ &{} &{} \\\hline\\[-5pt]
+
+Sprott& $\dot x=-0.2y$&$(0, 0, 0)$ &$-1.13449, 0.06725\pm 0.58996i$ \\[1pt]
+Case I &$\dot y=x+z$&{}&{}\\[2pt]
+{} &$\dot z=x+y^2-z$ &{} &{} \\\hline\\[-5pt]
+
+Sprott& $\dot x=2z$&$(0, 0, 0)$ &$-2.31460, 0.15730\pm 1.30515i$ \\[1pt]
+Case J &$\dot y=-2y+z$&{}&{}\\[2pt]
+{} &$\dot z=-x+y+y^2$ &{} &{} \\\hline\\[-5pt]
+
+Sprott& $\dot x=y+3.9z$&$(1, 0.9, -0.23077)$ &$-1.43329,
+0.21664\pm 1.63526i$ \\[1pt]
+Case L &$\dot y=0.9x^2-y$&{}&{}\\[2pt]
+{} &$\dot z=1-x$ &{} &{} \\\hline\\[-5pt]
+
+Sprott& $\dot x=-2y$&$(-0.25, 0, 0.5)$ &$-2.31460, 0.15730\pm 1.30515i$ \\[1pt]
+Case N &$\dot y=x+z^2$&{}&{}\\[2pt]
+{} &$\dot z=1+y-2z$ &{} &{} \\\hline\\[-5pt]
+
+Sprott& $\dot x=0.9-y$&$(-0.44444, 0.9, -0.4)$ &$-1.23212,
+0.11606\pm 0.84674i$ \\[1pt]
+Case R &$\dot y=0.4+z$&{}&{}\\[2pt]
+{} &$\dot z=xy-z$ &{} &{} \\
+
+\hline
+\end{tabular}
+\end{table}
+
+In the next of this chapter, we'd like to demonstrate simple 3D autonomous chaotic systems each with only one stable
+equilibrium and furthermore, the equilibrium is a stable node-focus. For such system, one almost would expect
+asymptotically convergent behavior or, at least would not anticipate chaos to exist.
+
+Table \ref{t4.1} list some Sprott systems. Sprott D and E systems also have only one equilibrium, but nevertheless,
+such an equilibrium is not stable. From this point of view, the new systems are note be topologically equivalent
+to the Sprott systems.
+
+\section{Approach to Discover Chaotic System with One Stable Equilibrium -- Sprott System}
+
+\subsection{Mechanism of Generating the New System}
+To generate the new system, it's quite simple and intuitive to start from Sprott system.
+Table 3.1 lists systems those with only one equilibrium. System I,J,L,N and R all have 
+only one saddle-focus equilibrium while system D and E are both degenerate in the sense
+that their Jacobian eigenvalues at the equilibria consist of one conjugate pair of pure 
+imaginary numbers and one real number. 
+
+Clearly that equilibrium of system D and E are not stable. Nevertheless, it's quite natural
+to imagine that a small perturbation to the system may be able to change such a degenerate
+equilibrium to a stable one. Therefore, we've tried to add simple constant control parameter
+to the Sprott E chaotic system in order to change the stability of its single equilibrium to 
+a stable one while preserving its chaotic dynamics.
+
+As a result, we've obtained the following new system:
+
+\begin{equation}\label{wangeq}
+  \left\{
+  \begin{array}{l}
+    \dot{x}=yz+a\\
+    \dot{y}=x^{2}-y \\
+    \dot{z}=1-4x.
+  \end{array}
+  \right.
+\end{equation}
+
+With the differs of $a$, the stability of the single equilibrium of the system is
+fundamentally different which can be verified and compared between the results showed in
+Table \ref{t4.1} and \ref{t4.2} respectively.
+
+\begin{table}[htbp!]
+  \centering
+ \caption{\label{t4.2}Equilibria and eigenvalues of the new
+      system.}
+  \begin{tabular}{c c c c}\\[-2pt]
+\hline
+Systems & Equations & Equilibria & Eigenvalues \\[6pt]
+\hline\\[-5pt]
+
+ & $\dot x=yz+a$&$(0.25, 0.0625, 0.08)$ &$-1.03140, 0.01570\pm 0.49208i$ \\[1pt]
+$a=-0.00$5 &$\dot y=x^2-y$&{}&{}\\[2pt]
+{} &$\dot z=1-4x$ &{} &{} \\\hline\\[-5pt]
+
+ & $\dot x=yz+a$&$(0.25, 0.0625, -0.096)$ &$-0.96069, -0.01966\pm 0.50975i$ \\[1pt]
+$a=0.006$ &$\dot y=x^2-y$&{}&{}\\[2pt]
+{} &$\dot z=1-4x$ &{} &{} \\\hline\\[-5pt]
+
+ & $\dot x=yz+a$&$(0.25, 0.0625, -0.352)$ &$-0.84580, -0.07710\pm 0.53818i$ \\[1pt]
+$a=0.022$ &$\dot y=x^2-y$&{}&{}\\[2pt]
+{} &$\dot z=1-4x$ &{} &{} \\\hline\\[-5pt]
+
+ & $\dot x=yz+a$&$(0.25, 0.0625, -0.48)$ &$-0.78217, -0.10891\pm 0.55476i$ \\[1pt]
+$a=0.030$ &$\dot y=x^2-y$&{}&{}\\[2pt]
+{} &$\dot z=1-4x$ &{} &{} \\\hline\\[-5pt]
+
+ & $\dot x=yz+a$&$(0.25, 0.0625, -0.8)$ &$-0.60746, -0.19627\pm 0.61076i$ \\[1pt]
+$a=0.050$ &$\dot y=x^2-y$&{}&{}\\[2pt]
+{} &$\dot z=1-4x$ &{} &{} \\[-2pt] \hline
+\end{tabular}
+\end{table}
+
+To better understand the new system, some basic properties of the system will be briefly
+analyzed next. We'll find that the new system is indeed chaotic.
+
+\subsection{Equilibrium and Stability}
+
+At first, we'll solve \ref{wangeq}. The system poses only one equilibrium:
+
+\begin{equation}
+  P \left( x_{E},y_{E},z_{E} \right) =\left(\frac{1}{4},\frac{1}{16},-16\,a\right).
+\end{equation}
+
+Then we linearize the system at the equilibrium $P$ to obtain the Jacobian matrix 
+
+\begin{equation}
+  J=\left[
+    \begin {array}{ccc} 0&z&y\\ \noalign{\medskip}2\,x&-1&0
+      \\ \noalign{\medskip}-4&0&0\end {array} \right] = \left[
+    \begin {array}{ccc} 0&-16\,a&\frac{1}{16}\\
+      \noalign{\medskip}\frac{1}{2}&-1&0
+      \\ \noalign{\medskip}-4&0&0\end {array}
+      \right].
+\end{equation}
+
+By solving the characteristic equation $|\lambda I - J|=0$, one
+obtains the Jacobian eigenvalues, as shown in Table \ref{t4.2} for some
+chosen values of the parameter $a$.
+
+\subsection{Lyapunov Exponents}
+
+To verify the chaoticity of system (\ref{wangeq}), its Lyapunov
+exponents and Lyapunov dimension are calculated.
+
+The Lyapunov exponents are denoted by $L_i$, $i=1,2,3$, and
+ordered as $L_1>L_2>L_3$. Recall that a system is considered chaotic if
+$L_1>0,\,L_2=0,\,L_3<0$ with $|L_1|<|L_3|$.
+
+The Lyapunov dimension is defined by
+
+\begin{equation}
+  D_L=j+\frac{1}{|L_{j+1}|}\sum_{i=1}^j{L_i},
+\end{equation}
+
+where $j$ is the largest integer satisfying
+$\sum_{i=1}\limits^j{L_i}\ge0$ and $\sum_{i=1}^{j+1}{L_i}<0$.
+
+As showed in \ref{Lya}, the largest Lyapunov exponent decreases
+as the parameter $a$ increases from $-0.01$ to $0.05$.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=10cm]{chaos/newsys_lya}
+  \caption{\label{Lya}The largest Lyapunov exponent versus the
+    parameter $a$.} 
+\end{figure}
+
+\subsection{The Degenerate Case of $a=0$ (Sprott E System)}
+
+When $a=0$, the equilibrium degenerates. It is precisely the
+Sprott E system listed in Table \ref{t4.1} (see Fig. \ref{0003D}). The
+\v{S}i'lnikov homoclinic criterion might be applied to this system
+to show the existence of chaos; however, it involves somewhat
+subtle mathematical arguments.
+
+In this degenerate case, the positive largest Lyapunov exponent of
+the system (see Table \ref{t4.2}) indicates the existence of chaos.
+In the time domain, Fig. \ref{000} (top part) shows an apparently
+chaotic waveform of $y(t)$; while in the frequency domain, Fig.
+\ref{000} (bottom part) shows an apparently continuous broadband
+spectrum $|y(t)|$. These all prove that the Sprott E system, or
+the new system (\ref{wangeq}) with $a=0$, is indeed chaotic.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=10cm]{chaos/newsys_3D_000}
+ \caption{\label{0003D}The new system: chaotic attractor with
+$a=0$, including 3D views on the $x$-$y$ plane, $x$-$z$ plane and
+$y$-$z$ plane.} 
+\end{figure}
+
+\bigbreak
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=10cm]{chaos/newsys_PP_000}
+ \caption{\label{000}Top: An apparently chaotic waveform of
+$y(t)$ ($a=0$). Bottom: An apparently continuous broadband
+frequency spectrum $|y(t)|$.}
+\end{figure}
+
+\subsection{The Case of $a=0.006$: A New Type of Chaos}
+
+As showed in Table \ref{t4.2}, the equilibrium of the new system
+becomes a node-focus when $a>0$, and that's the reason the
+\v{S}i'lnikov homoclinic criterion is no longer applicable to this case.
+
+Consider the case $a=0.006$, numerical calculation of the 
+Lyapunov exponents gives $L_1 = 0.0489$, $L_2 =0$ and $L_3
+=-1.0485$ which indicating the existence of chaos.
+
+In the time domain, Fig. \ref{006} (top part) shows an apparently
+chaotic waveform $y(t)$; while in the frequency domain,
+Fig. \ref{006} (bottom part) shows an apparently continuous
+broadband spectrum $|y(t)|$. These all prove that the new system
+(\ref{wangeq}) with $a=0.006$ is indeed chaotic.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=10cm]{chaos/newsys_3D_006}
+ \caption{\label{0063D}The new system: chaotic attractor with
+$a=0.006$, including 3D views on the $x$-$y$ plane, $x$-$z$ plane
+and $y$-$z$ plane.} 
+\end{figure}
+
+\bigbreak
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=10cm]{chaos/newsys_PP_006}
+ \caption{\label{006}Top: An apparently chaotic waveform of
+$y(t)$ ($a=0.006$). Bottom: An apparently continuous broadband
+frequency spectrum $|y(t)|$.}
+\end{figure}
+
+\subsection{Bifurcation Analysis}
+
+Fig. \ref{bif} shows a bifurcation diagram versus the parameter
+$a$, demonstrating a period-doubling route to chaos.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=10cm]{chaos/newsys_bif}
+\caption{\label{bif}Bifurcation diagram, showing a
+period-doubling route to chaos in $y$ (at $x=0.25$) versus the
+parameter $a$.} 
+\end{figure}
+
+Fig. \ref{bif2} also demonstrates the gradual evolving dynamical
+processes as $a$ continuously varied.
+
+Both figures indicate that although the equilibrium is changed
+from an unstable saddle-focus to a stable node-focus, the chaotic
+dynamics survive in a relative narrow range of the parameter $a$.
+
+All the above numerical results are summarized in Table \ref{t4.3}.
+
+\begin{table}[htbp!]
+  \centering
+\caption{\label{t4.3}Numerical results for some values of the parameter $a$
+with initial values $(1,1,1)$.}\begin{tabular}{c c c c}\\[-2pt]
+\hline
+Parameters & Eigenvalues & Lyapunov Exponents & Fractal Dimensions \\[6pt]
+\hline
+$a=-0.005$ & $\lambda_1=-1.03140$& $L_1=0.0884$ &{}\\[1pt]
+{} & $\lambda_{2,3}=0.01570\pm 0.49208i$ & $L_2=0$ & $D_L=2.081$ \\[2pt]
+{} & {} & $L_3=-1.0884$ & {} \\\hline\\[-5pt]
+
+$a=0$ & $\lambda_1=-1$ & $L_1=0.0766$ & {} \\[1pt]
+{} & $\lambda_{2,3}=\pm 0.5i$ & $L_2=0$ & $D_L=2.071$ \\[2pt]
+{} & {} & $L_3=-1.0766$ & {} \\\hline\\[-5pt]
+
+$a=0.006$ & $\lambda_1=-0.96069$& $L_1=0.0510$ &{}\\[1pt]
+{} & $\lambda_{2,3}=-0.01966\pm 0.50975i$ & $L_2=0$ & $D_L=2.048$ \\[2pt]
+{} & {} & $L_3=-1.0510$ & {} \\\hline\\[-5pt]
+
+$a=0.022$ & $\lambda_1=-0.84580$ & $L_1=0$ & {} \\[1pt]
+{} & $\lambda_{2,3}=-0.07710\pm 0.53818i$ & $L_2=-0.1381$ & $D_L=1.000$ \\[2pt]
+{} & {} & $L_3=-0.8619$ & {} \\\hline\\[-5pt]
+
+$a=0.030$ & $\lambda_1=-0.78217$ & $L_1=0$ & {} \\[1pt]
+{} & $\lambda_{2,3}=-0.10891\pm 0.55476i$ & $L_2=-0.0826$ & $D_L=1.000$ \\[2pt]
+{} & {} & $L_3=-0.9174$ & {} \\\hline\\[-5pt]
+
+$a=0.050$ & $\lambda_1=-0.60746$ & $L_1=0$ & {} \\[1pt]
+{} & $\lambda_{2,3}=-0.19627\pm 0.61076i$ & $L_2=-0.0518$ & $D_L=1.001$ \\[2pt]
+{} & {} & $L_3=-0.9482$ & {} \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[h]\label{fig:one_equi_01}
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\includegraphics[width=\textwidth]{chaos/newsys_3DPP_-005}
+{\small (a)}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{chaos/newsys_3DPP_022}
+{\small (b)}
+\end{minipage}
+
+\begin{minipage}[t]{0.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{chaos/newsys_3DPP_030}
+{\small (c)}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\linewidth}
+\centering
+\includegraphics[width=\textwidth]{chaos/newsys_3DPP_050}
+{\small (d)}
+\end{minipage}
+\caption{\label{bif2}Phase portraits and frequency spectra:
+(a) $a=0.006$, (b) $a=0.022$, (c) $a=0.03$, (d) $a=0.05$.}
+\end{figure}
+
+
+\subsubsection{Coexistence of Point, Periodic and Strange Attractors}
+
+Interestingly, the new system poses only one stable equilibrium when $a>0$ and can coexist peacefully
+with a strange attractor as mentioned in \cite{Wang2012b}.
+Stable equilibrium can coexist peacefully with strange attractor as reported in \cite{Wang2012b} which
+means both a point attractor and a strange attractor dominate the system dynamics in a certain region of
+the state space.
+
+When a in the vicinity of 0.01, in addition to a point attractor and a strange attractor, system (\ref{wangeq})
+is found to have a periodic attractor. As shown in Fig. \ref{f1}, there gives rise to the coexistence  of point, periodic,
+and strange attractors. The point attractor (green) is generated from initial condition $ (x_{0}, y_{0}, z_{0}) = (0.2, 0, 0)$,
+the periodic attractor (red) from initial condition $(1, 1, 1)$, and the strange attractor (blue) from initial condition $(1, 1, 0)$.
+
+\begin{figure}
+\centering
+\includegraphics[width=10cm]{chaos/co1}
+\caption{Coexistence of point, periodic, and strange
+attractors of system (\ref{wangeq}) with $a=0.01$; the point attractor
+(green) is generated from initial conditions $(0.2, 0, 0)$, the periodic
+attractor (red) from initial conditions $(1, 1, 1)$, and the strange
+attractor (blue) from initial conditions $(1, 1, 0)$.} \label{f1}
+\end{figure}
+
+\begin{table}[htbp!]
+  \centering
+  \caption{\label{t4.4}Lyapunov Exponents for $a = 0.01$ with different initial values}
+ \begin{tabular}{lcl}
+  %\toprule
+  \hline
+  Initial Conditions & Lyapunov Exponents & Dimension\\
+  %\midrule
+  \hline
+  $(0.2, 0, 0)$ & $-0.033$;  $-0.033$;  $-0.933$ & $0$ \\
+     $(1, 1, 1)$ & $0.000$;  $-0.071$;  $-0.929$ & $1$ \\
+     $(1, 1, 0)$ & $0.060$; $0.000$; $-1.060$ & $2.057$ \\
+  %\bottomrule
+  \hline
+ \end{tabular}
+\end{table}
+
+Fig. \ref{bif} shows the bifurcation diagrams versus parameter $a$ with different initial conditions, demonstrating a period-doubling
+bifurcation route to chaos. These diagrams also show that, at $a=0.01$, the three different initial conditions lead to three different
+attractors, which coexist simultaneously.
+
+\begin{figure}
+\centering
+\begin{minipage}[b]{0.6\textwidth}
+\centering
+\includegraphics[width=8cm]{chaos/bif02}
+{\small (a)}
+\end{minipage}
+\begin{minipage}[b]{0.6\textwidth}
+\centering
+\includegraphics[width=8cm]{chaos/bif111}
+{\small (b)}
+\end{minipage}
+\begin{minipage}[b]{0.6\textwidth}
+\centering
+\includegraphics[width=8cm]{chaos/bif110}
+{\small (c)}
+\end{minipage}
+\caption{Bifurcation diagram versus parameter $a$, with different initial conditions, showing a period-doubling route to chaos.} \label{bif}
+\end{figure}
+
+\subsubsection{Basins of Attraction}
+
+Basins of the three different type of attractors represent a mathematically-involved subtle issue for that even for multiple
+point attractors, the basin boundaries can be fractal.
+
+As showed in Fig. \ref{f3}, the boundaries of the basins of attraction of system \ref{wangeq} do have fractal structure.
+In Fig. \ref{f3}, three cross sections of which in the planes containing the equilibrium point. On these sections,
+the basins of attraction of the point, periodic, and strange attractors of system (\ref{wangeq}) with $a=0.01$ are indicated by
+green, red, and blue, respectively. The strange attractor resides in the blue basin; the periodic cycle has several points in
+the red basin, and the equilibrium has a single point in the green region. In this figure, the black points are cross sections
+of the respective attractors. As the parameter $a$ is gradually changed, the basins of attraction also gradually change, which
+makes the estimate of the basin boundaries interesting but difficult.
+
+\begin{figure}
+\centering
+\begin{minipage}[b]{0.4\linewidth}
+\centering
+%\includegraphics[width=8cm,height=8cm]{chaos/wangxy}
+\includegraphics[width=4cm,height=5cm]{chaos/wangxy}
+{\small (a)}
+\end{minipage}
+\begin{minipage}[b]{0.4\linewidth}
+\centering
+\includegraphics[width=4cm,height=5cm]{chaos/wangxz}
+{\small (b)}
+\end{minipage}
+\begin{minipage}[b]{0.4\linewidth}
+\centering
+\includegraphics[width=4cm,height=5cm]{chaos/wangyz}
+{\small (c)}
+\end{minipage}
+\caption{\label{f3}Basins of attraction of the point, periodic, and strange attractors of system (\ref{wangeq}), all with $a=0.01$ on three cross sections in the plane containing the equilibrium point, marked by green, red, and blue, respectively. The strange attractor resides in the blue basin; the periodic cycle has several points in the red basin, and the equilibrium point is a single point in the green region. The black points are cross sections of the attractors.}
+\end{figure}
+
+
+%\section{Discussions}
+%
+%An attractor is defined as the smallest attracting point set that cannot be itself decomposed into two or more subsets with distinct basins of attraction. This restriction is necessary since a dynamical system may have different types of multiple attractors, each with its own basin of attraction.
+%Most systems have only one attractor or one single type of attractors. Others may have two different types of coexisting attractors, most likely strange attractors and periodic cycles. It is interesting and striking to see that the simple system reported here has all three different common types of attractors coexisting side by side. We do not have a definite answer to the question about the mechanism for the birth and death of these different types of attractors, except to note that classical local analytic theory does not apply because the unique equilibrium point of the system is not hyperbolic. One must then resort to the theories of global bifurcations and chaos, which leaves an important yet challenging theoretical as well as technical problem for future research.
+
+\section{Approach to Discover Chaotic System with One Stable Equilibrium -- Jerk System}
+
+\subsection{Mechanism of Generating the New System }
+
+In this section, we'll focus on jerk system in generating chaotic flows with one stable equilibrium.
+For a general equation with quadratic nonlinearities as showed below,
+
+\begin{equation}
+  \label{eq:org803ec0c}
+  \left\{
+  \begin{array}{l}
+    \dot{x} = y\\
+    \dot{y} = z\\
+    \dot{z} = f(x,y,z)\\
+    f = a_1x + a_2y + a_3z + a_4x^2 + a_5y^2 + a_6z^2 + a_7xy + a_8xz + a_9yz + a_{10}
+    \right.
+  \end{equation}
+
+  By Solving eq. \ref{eq:org803ec0c} we obtain $y^{*} = z^{*} = 0$ for the equilibrium and the
+  eigenvalues $\lambda$ must satisfy,
+
+  \begin{equation}
+    \lambda^{3} - f_z\lambda^{2} - f_y\lambda - f_x
+  \end{equation}
+
+  in which \(f_x = a_1+2a_4x^{*}, f_y = a_2+a_7x^{*}\), and \(f_z=a_3+a_8x^{*}\).
+
+  Using Routh-Hurwitz Stability criterion, requirements
+  \begin{eqnarray}
+    f_z &<& 0\\\nonumber
+    f_yf_z + f_x &>& 0\\\nonumber
+    f_x &<& 0
+  \end{eqnarray}
+  are needed for stable equilibrium.
+
+  By using \(y^{*} = z^{*}\), we obtain,
+
+  \begin{equation}
+    a_1x + a_4x^2+a_{10} = 0
+  \end{equation}
+
+  and then, for $a_4\neq 0$,
+
+  \begin{equation}
+    x^{*}_{1,2} = (-a_1\pm \sqrt{\Delta})/2a_4,
+  \end{equation}
+
+  where \(\Delta = a_1^2 - 4a_4a_{10}\).
+
+  To obtain an equilibrium, \(\Delta\) should be not less than 0 while the stability condition
+  \(f_x < 0\) at \(x_1^{*}\) requires \(\sqrt{\Delta} < 0\) which is impossible. 
+
+  In conclusion, a quadratic jerk system cannot have two stable equilibria. Therefore,
+  the general case \ref{eq:org803ec0c} can be modified into,
+  \begin{equation}
+    \left\{
+    \begin{array}{l}
+    \dot{x} = y\\\nonumber
+    \dot{y} = z\\\nonumber
+    \dot{z} = a_1x + a_2y + a_3z + a_4y^2 + a_5z^2 + a_6xy + a_7xz + a_8yz + a_9
+    \end{array}
+    \right.
+  \end{equation}
+  where there is no \(x^2\) term in the \(\dot{z}\) equation to ensure one and only one equilibrium exists.
+
+  Such system has only one equilibrium at \((-a_9/a_1,0,0)\) whose stability requires
+
+  \begin{eqnarray*}  
+    \label{eq:org8aae12e}
+    a_1 < 0,& \left( a_3 - \frac{a_7a_9}{a_1} \right) < 0 \\  
+  &\left( a_2 - \frac{a_6a_9}{a_1} \right)  <   \frac{-a_1}{\left( \frac{a_7a_9}{a_1} \right)} 
+\end{eqnarray*}
+
+  Considering many thousands of combinations of the coefficients \(a_1\) though \(a_9\) and initial conditions
+  subject to the constraints \ref{eq:org8aae12e}, an exhaustive computer search was done to seek
+  cases for which the largest Lyapunov exponent is greater than 0.001. For each case found, the space of 
+  coefficents was searched while as many coefficients as possible are set to zero with the others set \(\pm{}1\)
+  if possible or otherwise to a small integer or decimal fraction with the lowest possible digits.
+  Case \(SE_1-SE_6\) in Table \ref{tab:org916b8c8} are six simple cases found in this way.
+
+  Many other chaotic flows can be found through similar calculations and are listed in Table \ref{tab:org916b8c8}
+  from $SE_7$ to $SE_{23}$.
+
+  \begin{table}
+    \centering
+    \caption{\label{tab:org916b8c8}
+      (Part I)23 Simple Chaotic Flows with One Stable Equilibrium}
+    \newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+    \centering
+    \begin{tabular}{c c c c c c c}
+      \hline\noalign{\smallskip}
+      Model & Equations & Equilibrium & Eigenvalues & LEs & \(D_{KY}\) & \((x_0,y_0,z_0)\)\\
+      \hline
+      $SE_1$        &               $\left\{ \begin{array}{l}                                                                             
+        \dot{x} = y\\
+        \dot{y} = z\\
+        \dot{z} = −x − 0.6y − 2z + z^2 − 0.4xy
+      \end{array} \right.$                     &            \tabincell{c}{$0$\\ $0$\\ $0$}             &\tabincell{c}{$−1.9548$\\ $−0.0226$\\ $\pm 0.7149i$}       &   \tabincell{c}{$0.0377$\\ $0$\\ $−2.0377$}   &    2.0185    &     \tabincell{c}{$4$\\ $−2$\\ $0$}\\
+      $SE_2$        &               $\left\{ \begin{array}{l}
+        \dot{x} = y\\
+        \dot{y} = z\\
+        \dot{z} = −0.5x − y − 0.55z − 1.2z^2 − xz − yz
+      \end{array} \right.$                     &            \tabincell{c}{$0$\\ $0$\\ $0$}              &\tabincell{c}{$−0.5103$\\ $−0.0198$\\ $\pm 0.9896i$}       &   \tabincell{c}{$0.0804$\\ $0$\\ $−0.4889$}    &   2.1644    &     \tabincell{c}{$-1$\\ $0$\\ $1$}\\
+      $SE_3$        &               $\left\{ \begin{array}{l}
+        \dot{x} = y\\
+        \dot{y} = z\\
+        \dot{z} = −3.4x − y − 4z + y^2 + xy
+      \end{array} \right.$                     &            \tabincell{c}{$0$\\ $0$\\ $0$}              &\tabincell{c}{$−3.9641$\\ $−0.0179$\\ $\pm{}0.9259i$}      &   \tabincell{c}{$0.0711$\\ $0$\\ $−4.0711$}    &   2.0175    &     \tabincell{c}{$−2$\\ $0$\\ $2.4$}\\
+      $SE_4$        &               $\left\{ \begin{array}{l}
+        \dot{x} = y\\
+        \dot{y} = z\\
+        \dot{z} = −x − 1.7z + y^2 + 0.6xy − 1
+      \end{array} \right.$                     &            \tabincell{c}{$−1$\\ $0$\\ $0$}             &\tabincell{c}{$−1.6942$\\ $−0.0029$\\ $\pm{}0.7683i$}      &   \tabincell{c}{$0.0434$\\ $0$\\ $−1.7434$}    &   2.0249    &     \tabincell{c}{$0.5$\\ $1$\\ $0$}\\
+      $SE_5$        &               $\left\{ \begin{array}{l}
+        \dot{x} = y\\
+        \dot{y} = z\\
+        \dot{z} = −x − z − z^2 + 0.4xy − 2.7
+      \end{array} \right.$                     &            \tabincell{c}{$−2.7$\\ $0$\\ $0$}           &\tabincell{c}{$−0.9600$\\ $−0.0200$\\ $\pm{}1.0204i$}      &   \tabincell{c}{$0.0136$\\ $0$\\ $−1.0136$}    &   2.0134    &     \tabincell{c}{$−6.1$\\ $1$\\ $1$}\\
+      $SE_6$        &               $\left\{ \begin{array}{l}
+        \dot{x} = y\\
+        \dot{y} = z\\
+        \dot{z} = −x − 2.9z^2 + xy + 1.1xz − 1
+      \end{array} \right.$                     &            \tabincell{c}{$−1$\\ $0$\\ $0$}             &\tabincell{c}{$−1.0526$\\ $−0.0237$\\ $\pm{}0.9744i$}      &   \tabincell{c}{$0.0638$\\ $0$\\ $−1.0638$}    &   2.0600    &     \tabincell{c}{$−2.2$\\ $0.6$\\ $0$}\\
+      $SE_7$        &               $\left\{ \begin{array}{l}
+        \dot{x} = y\\
+        \dot{y} = −x + yz\\
+        \dot{z} = −2z − 8xy + xz − 1
+      \end{array} \right.$                     &            \tabincell{c}{$0$\\ $0$\\ $−0.5$}           &\tabincell{c}{$−2.0000$\\ $−0.2500$\\ $\pm{}0.9682i$}      &   \tabincell{c}{$0.0360$\\ $0$\\ $−25.6798$}    &   2.0014    &     \tabincell{c}{$1$\\ $−0.7$\\ $0$}\\
+      $SE_8$        &               $\left\{ \begin{array}{l}
+        \dot{x} = y\\
+        \dot{y} = −x + yz\\
+        \dot{z} = −z − 0.7x^2 + y^2 − 0.1
+      \end{array} \right.$                     &            \tabincell{c}{$0$\\ $0$\\ $−0.1$}           &\tabincell{c}{$−1.0000$\\ $−0.0500$\\ $\pm{}0.9987i$}     &   \tabincell{c}{$0.1412$\\ $0$\\ $−1.3649$}    &   2.1034    &     \tabincell{c}{$0$\\ $0.9$\\ $0$}\\
+      $SE_9$        &               $\left\{ \begin{array}{l}
+        \dot{x} = y\\
+        \dot{y} = −x + yz\\
+        \dot{z} = 2x − 2z + y^2 − 0.3
+      \end{array} \right.$                     &            \tabincell{c}{$0$\\ $0$\\ $−0.15$}          &\tabincell{c}{$−2.0000$\\ $−0.0750$\\ $\pm{}0.9972i$}      &   \tabincell{c}{$0.0203$\\ $0$\\ $−2.4751$}    &   2.0082    &     \tabincell{c}{$0$\\ $0.8$\\ $−0.2$}\\
+      $SE_{10}$        &            $\left\{ \begin{array}{l}
+        \dot{x} = y\\
+        \dot{y} = −x + yz\\
+        \dot{z} = x − 0.3y − 2z + xz − 0.1
+      \end{array} \right.$                     &            \tabincell{c}{$0$\\ $0$\\ $−0.05$}          &\tabincell{c}{$−2.0000$\\ $−0.0250$\\ $\pm{}0.9997i$}      &   \tabincell{c}{$0.0963$\\ $0$\\ $−15.7010$}    &   2.0061    &     \tabincell{c}{$3.9$\\ $0$\\ $1$}\\
+      $SE_{11}$        &            $\left\{ \begin{array}{l}
+        \dot{x} = y\\
+        \dot{y} = −x + yz\\
+        \dot{z} = −y − 12z + x^2 + 9xz − 1
+      \end{array} \right.$                     &            \tabincell{c}{$0$\\ $0$\\ $−1/12$}          &\tabincell{c}{$−12.0000$\\ $−0.0417$\\ $\pm{}0.9991i$}     &   \tabincell{c}{$0.0801$\\ $0$\\ $−14.1917$}    &   2.0056    &     \tabincell{c}{$-2$\\ $0$\\ $0.1$}\\
+      $SE_{12}$        &            $\left\{ \begin{array}{l}
+        \dot{x} = y\\
+        \dot{y} = −x + yz\\
+        \dot{z} = −66z + y^2 + 35xz − 1
+      \end{array} \right.$                     &            \tabincell{c}{$0$\\ $0$\\ $−1/66$}          &\tabincell{c}{$−66.0000$\\ $−0.0076$\\ $\pm{}1.0000i$}     &   \tabincell{c}{$0.0259$\\ $0$\\ $−61.6130$}    &   2.0004    &     \tabincell{c}{$2$\\ $0.6$\\ $0$}\\
+      $SE_{13}$        &            $\left\{ \begin{array}{l}
+        \dot{x} = y\\
+        \dot{y} = −x + yz\\
+        \dot{z} = −4.9z + 0.4y^2 + xy − 1
+      \end{array} \right.$                     &            \tabincell{c}{$0$\\ $0$\\ $−1/4.9$}         &\tabincell{c}{$−4.9000$\\ $−0.1020$\\ $\pm{}0.9948i$}      &   \tabincell{c}{$0.0540$\\ $0$\\ $−4.8228$}    &   2.0112    &     \tabincell{c}{$0$\\ $−2.2$\\ $0$}\\
+      $SE_{14}$        &            $\left\{ \begin{array}{l}
+        \dot{x} = z\\
+        \dot{y} = x + z\\
+        \dot{z} = −y − 3z^2 + xy + yz − 0.7
+      \end{array} \right.$                     &            \tabincell{c}{$0$\\ $−0.7$\\ $0$}           &\tabincell{c}{$−0.6082$\\ $−0.0459$\\ $\pm{}1.2814i$}      &   \tabincell{c}{$0.0657$\\ $0$\\ $−1.6407$}    &   2.0401    &     \tabincell{c}{$0.5$\\ $−1$\\ $0$}\\
+      \hline
+    \end{tabular}
+    %\end{spacing}
+  \end{table}
+
+  \begin{table}
+    \centering
+    \caption{\label{tab:org916b8c8}
+      (Part II)23 Simple Chaotic Flows with One Stable Equilibrium}
+    \newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+    \centering
+    \begin{tabular}{c c c c c c c}
+      \hline\noalign{\smallskip}
+      Model & Equations & Equilibrium & Eigenvalues & LEs & \(D_{KY}\) & \((x_0,y_0,z_0)\)\\
+      \hline
+      $SE_{15}$        &            $\left\{ \begin{array}{l}
+        \dot{x} = −z\\
+        \dot{y} = x − z\\
+        \dot{z} = 0.9y + 0.2x^2 + xz + yz + 1
+      \end{array} \right.$                     &            \tabincell{c}{$0$\\ $−10/9$\\ $0$}          &\tabincell{c}{$−1.0618$\\ $−0.0247$\\ $\pm{}0.9203i$}      &   \tabincell{c}{$0.0414$\\ $0$\\ $−6.6641$}    &   2.0062    &     \tabincell{c}{$3$\\ $2$\\ $0$}\\
+      $SE_{16}$        &            $\left\{ \begin{array}{l}
+        \dot{x} = −z\\
+        \dot{y} = −x + z\\
+        \dot{z} = −7y − 1.4z + x^2 + xz − yz
+      \end{array} \right.$                     &            \tabincell{c}{$0$\\ $0$\\ $0$}              &\tabincell{c}{$−1.0549$\\ $−0.1726$\\ $\pm{}2.5702i$}      &   \tabincell{c}{$0.0775$\\ $0$\\ $−6.7190$}    &   2.0115    &     \tabincell{c}{$1$\\ $6$\\ $−6$}\\
+      $SE_{17}$        &            $\left\{ \begin{array}{l}
+        \dot{x} = z\\
+        \dot{y} = x − y\\
+        \dot{z} = −3.1x − 0.3xz + 0.2yz + 0.57
+      \end{array} \right.$                     &            \tabincell{c}{$0.57/3.1$\\ $0.57/3.1$\\ $0$} &\tabincell{c}{$−1.0000$\\ $−0.0092$\\ $\pm{}1.7607i$}     &   \tabincell{c}{$0.0832$\\ $0$\\ $−0.6549$}    &   2.1262    &     \tabincell{c}{$7.5$\\ $0$\\ $−5$}\\
+      $SE_{18}$        &            $\left\{ \begin{array}{l}
+        \dot{x} = z\\
+        \dot{y} = −y + z\\
+        \dot{z} = −2.1x − 0.1z − y^2 + 0.11xz + 0.5yz
+      \end{array} \right.$                     &            \tabincell{c}{$0$\\ $0$\\ $0$}              &\tabincell{c}{$−1.0000$\\ $−0.0500$\\ $\pm{}1.4483i$}      &   \tabincell{c}{$0.1469$\\ $0$\\ $−3.8348$}    &   2.0383    &     \tabincell{c}{$−28$\\ $0$\\ $0$}\\
+      $SE_{19}$        &            $\left\{ \begin{array}{l}
+        \dot{x} = z\\
+        \dot{y} = −y + z\\
+        \dot{z} = −x − 2xy + 1.7xz − 0.3
+      \end{array} \right.$                     &            \tabincell{c}{$−0.3$\\ $0$\\ $0$}           &\tabincell{c}{$−1.3766$\\ $−0.0667$\\ $\pm{}0.8497i$}      &   \tabincell{c}{$0.0241$\\ $0$\\ $−49.8730$}    &   2.0005    &     \tabincell{c}{$0.2$\\ $6$\\ $7$}\\
+      $SE_{20}$        &            $\left\{ \begin{array}{l}
+        \dot{x} = z\\
+        \dot{y} = −y − z\\
+        \dot{z} = −11x + 2y − 2y^2 − z^2 − yz
+      \end{array} \right.$                     &            \tabincell{c}{$0$\\ $0$\\ $0$}              &\tabincell{c}{$−0.8543$\\ $−0.0728$\\ $\pm{}3.5875i$}      &   \tabincell{c}{$0.2125$\\ $0$\\ $−1.2125$}    &   2.1753    &     \tabincell{c}{$−2.1$\\ $0$\\ $5$}\\
+      $SE_{21}$        &            $\left\{ \begin{array}{l}
+        \dot{x} = z\\
+        \dot{y} = −y − z\\
+        \dot{z} = −7.1x + y  − 2y2 + xz − yz
+      \end{array} \right.$                     &            \tabincell{c}{$0$\\ $0$\\ $0$}              &\tabincell{c}{$−0.8875$\\ $−0.0563$\\ $\pm{}2.8279i$}      &   \tabincell{c}{$0.0484$\\ $0$\\ $−2.8617$}    &   2.0169    &     \tabincell{c}{$0$\\ $−3$\\ $8.2$}\\
+      $SE_{22}$        &            $\left\{ \begin{array}{l}
+        \dot{x} = z\\
+        \dot{y} = −y − z\\
+        \dot{z} = −6x − 2y^2 + xz − yz − 0.9
+      \end{array} \right.$                     &            \tabincell{c}{$−0.15$\\ $0$\\ $0$}          &\tabincell{c}{$−1.0000$\\ $−0.0750$\\ $\pm{}2.4483i$}      &   \tabincell{c}{$0.0557$\\ $0$\\ $−2.8695$}    &   2.0194    &     \tabincell{c}{$−6$\\ $3.8$\\ $0$}\\
+      $SE_{23}$        &            $\left\{ \begin{array}{l}
+        \dot{x} = −z\\
+        \dot{y} = −y − z\\
+        \dot{z} = 4x − 0.2z^2 + xy − 2
+      \end{array} \right.$                     &            \tabincell{c}{$0.5$\\ $0$\\ $0$}            &\tabincell{c}{$−0.9060$\\ $−0.0470$\\ $\pm{}2.1006i$}      &   \tabincell{c}{$0.0159$\\ $0$\\ $−1.0159$}    &   2.0156    &     \tabincell{c}{$−0.4$\\ $1$\\ $−9$}\\
+      \hline
+    \end{tabular}
+    %\end{spacing}
+  \end{table}
+
+Projections onto the xy-plane of state space diagram of the cases in Table \ref{tab:org916b8c8} are showed below:
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=9cm]{chaos/simp_one_equi.png}\\
+  \caption{State space diagram of the cases in Table 1 projected onto the xy-plane.}
+\end{figure}
+
+
+\bibliographystyle{spphys}
+\bibliography{chaos_one_equi}

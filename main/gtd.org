@@ -149,6 +149,8 @@
 *** NEXT Chaos Book [4/6]
     SCHEDULED: <2017-05-31 三 21:10.+1d>
     :LOGBOOK:
+    CLOCK: [2017-06-06 周二 21:16]--[2017-06-06 周二 21:41] =>  0:25
+    CLOCK: [2017-06-06 周二 14:19]--[2017-06-06 周二 14:44] =>  0:25
     CLOCK: [2017-06-01 四 15:19]--[2017-06-01 四 15:44] =>  0:25
     CLOCK: [2017-06-01 四 13:32]--[2017-06-01 四 13:57] =>  0:25
     CLOCK: [2017-05-31 三 21:12]--[2017-05-31 三 21:37] =>  0:25
@@ -161,9 +163,6 @@
     - [X] Line Equilibrium
     - [X] Surface Equilibrium
     
-      Line Equilibrium 那一章和 Surface Equilibrium 作者一样，文字几乎完全相同，作者是 Sajad Jafari,
-      是不是和他说一声。
-
 * Personal
   
 ** Tasks 
