@@ -150,6 +150,23 @@
     :LOGBOOK:
     CLOCK: [2017-06-07 周三 20:16]--[2017-06-07 周三 20:32] =>  0:16
     :END:
+*** DONE 混沌书画图
+    CLOSED: [2017-06-09 周五 09:22] SCHEDULED: <2017-06-09 周五 09:00>
+    :PROPERTIES:
+    :CREATED:  [2017-06-09 周五 08:09]
+    :END:
+    :LOGBOOK:
+    CLOCK: [2017-06-09 周五 08:31]--[2017-06-09 周五 09:22] =>  0:51
+    :END:
+    
+    1. State space diagram
+    2. How to generate Lyapunov exponent
+    3. Poincare image projection
+    4. Bifurcation diagram
+    5. Basion of attraction
+    
+    主要将 State Space of Diagram 调成一致的格式
+       
 ** Projects
 
 *** NEXT Chaos Book [4/6]
