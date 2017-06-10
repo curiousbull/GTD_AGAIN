@@ -1,4 +1,4 @@
-\chapter{Simple Chaotic Flows with A Line Equilibrium}
+\chapter{Simple Chaotic Flows with A Line and Surfaces Equilibrium}
 \label{chap:chaoslineequi}
 \begin{pauthor}
   Xiong Wang\\
@@ -36,24 +36,34 @@ The chaotic attractors in dynamical systems without any equilibrium points or wi
 stable equilibrium are hidden attractors. That's the reason why such systems are rarely
 found and only a few such examples have been reported\cite{Jafari2013Elementary,MALIHE2013SIMPLE,Wang2011A,Wang2012Constructing,Wei2012Dynamical,Wang2012A,Wei2011Dynamical,Wang2012AB,Wei2012Delayed,Wei2010Anti}.
 
-In this chapter, we'll introduce chaotic systems with a line equilibrium of which attractors 
+In this chapter, firstly, we'll introduce chaotic systems with a line equilibrium of which attractors 
 can categorised as hidden attractor.
 Although in such systems, the basin of attraction may intersect with the line equilibrium  
 in some section, it's impossible to identify the chaotic attractor by choosing an arbitrary initial 
 condition in the vicinity of the unstable equilibrium due to uncountably many points on the line 
 outside the basin of attraction of the chaotic attractor. From a computational point of view,
 these attractors are hidden and knowledge about equilibrium does not help in their localization.
+Secondly, simple chaotic 3D flows with surfaces of equilibrium will be introduces as well as
+systems with a line equilibrium. As the systems of a line equilibrium, we'll show the fact
+the systems with surfaces of equilibrium are hidden as well.
 
 On the other hand, among those dynamical systems with a line equilibrium in the literature
 \cite{MARCELO2012HOPF,Fiedler2000Generic,Fiedler2000Generic2,BERNOLD2012GENERIC},
-only one chaotic example has been reported \cite{Zhou2013A} and is artificial for the reason that it's a four-dimensional
+only one chaotic example has been reported \cite{Zhou2013A} and is artificial for the reason
+that it's a four-dimensional
 system that can be reduced to three-dimensional system in which the line equilibrium vanishes.
+As for 3D chaotic flows, to the best of our knowledge, there are no 3D chaotic systems
+with surfaces of equilibria in the literature (there are
+papers on 4D chaotic systems with a plane of equilibria
+\cite{42_Jafari2016A}). As described in the next sections, such systems
+are not difficult to construct, but they can have some
+practical benefits.
 
 The goal of this chapter is to describe a new category of hidden attractor and expand the list of
 known mathematically simple hidden chaotic attractors. We can perform a systematic computer
 search for chaos in three-dimensional autonomous systems with quadratic nonlinearities which
-have been designed so that there will be a line equilibrium and can not been made to vanish
-by reduction to a system of lower dimension.
+have been designed so that there will be a line equilibrium or surfaces of equilibrium and can not
+been made to vanish by reduction to a system of lower dimension.
 
 \begin{table}[htb]
 \caption{\label{tab:line_01}Six simple chaotic flows with line equilibrium.}
@@ -255,10 +265,234 @@ regions of chaos. Each pixel uses a different random condition thereby indicatin
 references to color in this figure legend, the reader is referred to the web version of this article.)}
 \end{figure}
 
+
+\section{Simple chaotic flows with surfaces of equilibria}
+
+\begin{table}[htbp]
+  \centering
+\caption{\label{tab:sur_tab1}Twelve simple chaotic flows with surface equilibrium}
+\centering
+\begin{tabular}{llllllrr}
+\hline
+\hline
+Case & Surface type & Equations & \((a, b, c)\) & Equilibria & LEs & \(D_{KY}\) & \((x0, y0, z0)\)\\
+\hline
+\(ES_1\) & One plane & \(\dot{x} = f\times{}y\) & \(a = 1.54\) & \((0, y, z)\) & 0 & 2.0065 & 6\\
+ &  & $\dot{y} =  f\times{}z$ &  &  & −1.0869 &  & 0\\
+ &  & \(\dot{z} = f\times(x + ay^2 − xz)\) &  &  &  &  & −1\\
+ &  & \(f = x\) &  &  &  &  & \\
+\hline
+\(ES_2\) & One plane & \(\dot{x} = f\times{}y\) & \(a = 1\) & \((0, y, z)\) & 0.0644 & 2.0778 & 0.15\\
+ &  & \(\dot{y} = -x + az\) & \(b =3\) &  &  & 0 & 0\\
+ &  & \(\dot{z} = f\times{}(by^2 − xz)\) &  &  & −0.8279 & 0.8 & \\
+ &  & \(f = x\) &  &  &  &  & \\
+\hline
+\(ES_3\) & One plane & \(\dot{x} = f\times{}(y^2 + axy)\) & \(a = 2\) & \((0, y, z)\) & 0.0661 & 2.0397 & 0.87\\
+ &  & \(\dot{y} = f\times{}(−z)\) & \(b = 1\) & \((\sqrt{\frac{b}{a}}, -\sqrt{ab}, 0)\) & 0 &  & 0.4\\
+ &  & \(\dot{z} = f\times{}(b + xy)\) &  & \((-\sqrt{\frac{b}{a}}, \sqrt{ab},0)\) & −1.664 &  & 0\\
+ &  & \(f=x\) &  &  & 4 &  & \\
+\hline
+\(ES_4\) & One plane & \(\dot{x} = f\times{}(−y)\) & \(a = 2\) & \((x, y, 0)\) & 0.0560 & 2.0516 & 0\\
+ &  & \(\dot{y} = f\times(x + z)\) & \(b = 0.35\) &  & 0 &  & 0.46\\
+ &  & \(\dot{z} = f\times(ay^2 + xz − b)\) &  &  & −1.0855 &  & 0.7\\
+ &  & \(f = z\) &  &  &  &  & \\
+\hline
+\(ES_5\) & Two planes & \(\dot{x} = f\times(−az)\) & \(a = 0.4\) & \((0, y, z)\) & 0.1242 & 2.0677 & 1\\
+ &  & \(\dot{y} = f\times(b + z^2 − xy)\) & \(b = 1\) & \((x, 0, z)\) & 0 &  & 1.44\\
+ &  & \(\dot{z} = f\times(x^2 − xy)\) &  & \(\sqrt{b}, \sqrt{b}, 0)\) & −1.8356 &  & 0\\
+ &  & \(f = xy\) &  &  &  &  & \\
+\hline
+\(ES_6\) & Three planes & \(\dot{x} = f\times(y + ayz)\) & \(a = 2\) & \((0, y, z)\) & 0.0294 & 2.0725 & 1\\
+ &  & \(\dot{y} = f\times(bz + y^2 + cz^2)\) & \(b = 8\) & \((x, 0, z)\) & 0 &  & -1.3\\
+ &  & \(\dot{z} = f\times(x^2 − y^2)\) & \(c = 7\) & \((x, y, 0)\) & −0.4051 &  & −1\\
+ &  & \(f = xyz\) &  & \((\pm{}1.5, 1.5, −0.5)\) &  &  & \\
+ &  &  &  & \((\pm{}1.5, −1.5, −0.5)\) &  &  & \\
+\hline
+\(ES_7\) & Sphere & \(\dot{x} = f\times(ay)\) & \(a = 0.4\) & \(x^2 + y^2 + z^2  = 1\) & 0.0113 & 2.0119 & 0\\
+ &  & \(\dot{y} = f\times(xz)\) & \(b = 6\) & \((0, 0, 0)\) & 0 &  & 0.1\\
+ &  & \(\dot{z} = f\times(-z − x^2 − byz)\) &  &  & −0.9501 &  & 0\\
+ &  & \(f = 1 − x^2 − y^2 − z^2\) &  &  &  &  & \\
+\hline
+\(ES_8\) & Sphere & \(\dot{x} = f\times(az + y2)\) & \(a = 1\) & \(x^2 + y^2 + z^2  = 1\) & 0.0323 & 2.0338 & 0.24\\
+ &  & \(\dot{y} = f\times(y + bx^2)\) & \(b = 5\) & \((0, 0, 0)\) & 0 &  & 0.2\\
+ &  & \(\dot{z} = f\times(−xy)\) &  &  & −0.9552 &  & 0\\
+ &  & \(f = 1 − x^2 − y^2 − z^2\) &  &  &  &  & \\
+\hline
+\(ES_9\) & Circular cylinder & \(\dot{x} = f\times(y^2 − axy)\) & \(a = 5\) & \(x^2 + y^2 = 1\) & 0.0388 & 2.0321 & 0.06\\
+ &  & \(\dot{y} = f\times(xz)\) & \(b = 7\) & \((−0.0756,−0.3781, 0)\) & 0 &  & 0\\
+ &  & \(\dot{z} = f\times(1 − by^2)\) &  & \((+0.0756,+0.3781, 0)\) & −1.2078 &  & 1\\
+ &  & \(f = 1 − x^2 − y^2\) &  &  &  &  & \\
+\hline
+$ES_{10}$ & Hyperbolic cylinder & \(\dot{x} = f\times(a − z2)\) & \(a = 0.1\) & \(y^2 − x^2 = 1\) & 0.0420 & 2.1883 & 0\\
+ &  & \(\dot{y} = f\times(xz)\) & \(b = 1\) & \((0, 0,−0.3162)\) & 0 &  & −0.08\\
+ &  & \(\dot{z} = f\times(y + bxz)\) &  & \((0, 0,+0.3162)\) & −0.2230 &  & 0\\
+ &  & \(f = 1 + x^2 − y^2\) &  &  &  &  & \\
+\hline
+\(ES_{11}\) & Paraboloid & \(\dot{x} = f\times(yz)\) & \(a = 1\) & \(x^2 + y^2 = −z\) & 0.0283 & 2.0458 & 0.46\\
+ &  & \(\dot{y} = f\times(x − axz)\) & \(b = 0.6\) & \((0, y, 0)\) & 0 &  & 0\\
+ &  & \(\dot{z} = f\times(x − bz^2)\) &  & \((0.6, 0, 1)\) & −0.6171 &  & 0.8\\
+ &  & \(f = z + x^2 + y^2\) &  &  &  &  & \\
+\hline
+\(ES_{12}\) & Saddle & \(\dot{x} = f\times(yz)\) & \(a = 0.1\) & \(y^2 − x^2 = z\) & 0.0068 & 2.0135 & 1\\
+ &  & \(\dot{y} = f\times(−ax)\) & \(b = 6\) & \((0, 0, 0)\) & 0 &  & 0\\
+ &  & \(\dot{z} = f\times(-z + by^2 + xz)\) &  &  & −0.4998 &  & 1\\
+ &  & \(f = z + x^2 − y^2\) &  &  &  &  & \\
+\hline
+\hline
+\end{tabular}
+\end{table}
+
+In the search for chaotic flows with surfaces of equilibria,
+we followed a simple procedure. Consider the general
+parametric form of quadratic three-dimensional
+flows:
+
+\begin{equation}
+\label{eq:sur_eq1}
+  \left\{
+  \begin{array}{l}
+  \dot{x} = Q1(x, y, z)\\
+  \dot{y} = Q2(x, y, z)\\
+  \dot{z} = Q3(x, y, z)
+  \end{array}
+  \right.
+\end{equation}
+
+in which
+
+\begin{eqnarray}
+\label{eq:sur_eq2}
+  Q_1 &=& a_1x + a_2y+a_3z+a_4x^2 + a_5y^2 + a_6z^2 + a_7xy\\\nonumber
+  &&+ a_8xz + a_9yz + a_{10}\\\nonumber
+  Q_2 &=& a_{11}x + a_{12}y + a_{13}z + a_{14}x^2 + a_{15}y^2 + a_{16}z^2\\\nonumber
+  &&+ a_{17}xy + a_{18}xz + a_{19}yz + a_{20}\\\nonumber
+  Q_3 &=& a_{21}x + a_{22}y + a_{23}z + a_{24}x^2 + a_{25}y^2 + a_{26}z^2\\\nonumber 
+  && + a_{27}xy + a_{28}xz + a_{29}yz + a_{30}
+\end{eqnarray}
+
+In order to have a surface on which all the points are an
+equilibrium, there should be a multiplying factor such
+as \(f(x, y, z)\) in all the equations, so that an equilibrium
+surface occurs whenever \(f(x, y, z) = 0\). Thus, the
+equations to be examined are
+
+\begin{equation}
+\label{eq:sur_eq3}
+  \left\{
+  \begin{array}{l}
+    \dot{x} = f(x, y, z) Q1\\
+    \dot{y} = f(x, y, z) Q2\\
+    \dot{z} = f(x, y, z) Q3
+  \end{array}
+  \right.
+\end{equation}
+
+The simplest candidates for the surface \(f(x, y, z)\) are
+simple planes (one plane such as \(f = x\), two orthogonal
+planes such as \(f = xy\) and three orthogonal
+planes such as \(f = xyz\)). Also standard quadrics
+(ellipsoids, hyperboloids and paraboloids) are proper
+candidates.
+
+An exhaustive computer search was done, seeking
+elegant\cite{01_Sprott2010Elegant}  
+dissipative cases for which the largest Lyapunov
+exponent is greater than 0.001. Cases \(ES_1\sim{}ES_{12}\)
+in Table \ref{tab:sur_tab1} are twelve of the simplest cases found in this
+way. All these cases are dissipative with attractors projected
+onto the xy plane as shown in Fig. \ref{fig:sur_fig1}. Thevalue of
+parameters, Lyapunov exponent spectra and Kaplan–Yorke 
+dimensions are shown in Table \ref{tab:sur_tab1} along with
+initial conditions that are close to the attractor. As is
+common for strange attractors from three-dimensional
+autonomous systems, the attractor dimension is only
+slightly greater than 2.0, the largest of which is ES10
+with \(D_KY = 2.1883\), although no effort was made
+to tune the parameters for maximum chaos. All the
+cases appear to approach chaos through a succession
+of period-doubling limit cycles, a typical example of
+which (\(ES_1\)) is shown in Fig. \ref{fig:sur_fig2}. with increasing a. As
+a increases further, the strange attractor is destroyed in
+a boundary crisis.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=10cm]{chaos/sur_equi_01.png}
+\caption{\label{fig:sur_fig1}
+State space plots of the cases in Table 1 projected onto the xy plane.}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.6\textwidth]{chaos/sur_equi_02.png}
+\caption{\label{fig:sur_fig2}
+Largest Lyapunov exponent and bifurcation diagram of case $ES_1$
+showing a period-doubling route to chaos.}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.6\textwidth]{chaos/sur_equi_03.png}
+\caption{\label{fig:sur_fig3}
+  Cross section of the basins of attraction of the
+  two attractors in the xz plane at y = 0 for case $ES_1$. Initial
+  conditions in the white region lead to unbounded
+  orbits, those in the light blue
+  region lead to the strange
+  attractor whose cross
+  section is in black, and those
+  in the green region lead to
+  the plane equilibrium
+  }
+\end{figure}
+
+Figure \ref{fig:sur_fig3} shows a cross section in the xz plane at
+$y = 0$ of the basin of attraction for the two attractors
+for the typical case $ES_1$. The basin of attraction of the
+chaotic attractor intersects the plane equilibrium almost
+nowhere except in a tiny area near $x = 0, z = 1$. Thus,
+the strange attractor is hidden in the sense that there are
+uncountable points on the equilibrium plane of which a
+tiny fraction intersect the basin of the chaotic attractor.
+In other words, for computational purposes, the attractor
+is hidden from the equilibria to some extent, and
+knowledge about the equilibrium plane will not guarantee
+that its location can be found.
+
+As in the cases with a line of equilibrium points,
+the strange attractor can reside very close to the surface
+of equilibria. However, there is a fundamental difference
+between the two cases. In a three-dimensional
+system, the attractor can surround the equilibrium line,
+and often does, whereas a surface equilibrium divides
+the space into two regions that the attractor cannot span
+because the normal component of the flow is zero at the
+surface. Our experience shows that the surface equilibrium
+can be and often is very close to the strange attractor,
+and that the strange attractor is little altered if the
+surface is removed by eliminating the factor $f(x,y,z)$
+in the equations. Furthermore, it is possible to have separate
+strange attractors in the two regions (or more if
+there are multiple surfaces), although we do not show
+any such examples here.
+
+There can be some practical uses for such systems.
+A surface of equilibrium (such as a sphere) can act like
+a protector shield for the strange attractor, causing no
+entrance and exit. No perturbation smaller than that
+radius of the sphere can cause unbounded solutions.
+With such closed surfaces, the attractor will be hidden
+in an egg, which makes finding it more difficult. This
+is important in secure communication uses of chaotic
+systems. In the next section, we investigate the feasibility
+of constructing a real electrical circuit based on
+the proposed systems.
+
 \section{Conclusion}
 
 In conclusion, it is apparent that simple chaotic systems
-with a line equilibrium that seemed to be rare, may in fact
+with a line equilibrium and surfaces of equilibria that seemed
+to be rare, may in fact
 be rather common. These systems belong to the newly
 introduced class of chaotic systems with hidden attractors.
 In fact they are a new category of them which have not
