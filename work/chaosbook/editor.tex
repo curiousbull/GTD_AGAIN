@@ -1,0 +1,188 @@
+%%%%%%%%%%%%%%%%%%%%%%%% editor.tex %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% sample root file for the contributions of a "contributed volume"
+%
+% Use this file as a template for your own input.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Springer %%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% RECOMMENDED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[graybox, envcountchap]{svmult}
+
+% choose options for [] as required from the list
+% in the Reference Guide
+
+\usepackage{mathptmx}        % selects Times Roman as basic font
+\usepackage{helvet}          % selects Helvetica as sans-serif font
+\usepackage{courier}         % selects Courier as typewriter font
+%\usepackage{type1cm}        % activate if the above 3 fonts are 
+                             % not available on your system
+
+\usepackage{makeidx}         % allows index generation
+\usepackage{graphicx}        % standard LaTeX graphics tool
+                             % when including figure files
+\usepackage{multicol}        % used for the two-column index
+\usepackage[bottom]{footmisc}% places footnotes at page bottom
+
+% user adjustment
+\usepackage{chapterbib}      % allow different references in different chapters
+
+% to add author list each chapter
+\usepackage{lipsum} 
+\usepackage{suffix}
+
+% for long table support
+\usepackage{longtable}
+\usepackage{bm}
+
+\usepackage[utf8]{inputenc}
+\DeclareUnicodeCharacter{2212}{-}
+\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=green,CJKbookmarks=True]{hyperref}
+% support to tif format
+\usepackage{epstopdf}
+\epstopdfDeclareGraphicsRule{.tif}{png}{.png}{convert #1 \OutputFile}
+\AppendGraphicsExtensions{.tif}
+% see the list of further useful packages in the Reference Guide
+
+\makeindex             % used for the subject index
+                       % please use the style svind.ist with
+                       % your makeindex program
+%\usepackage[colorlinks,linkcolor=blue]{hyperref}  %超链接
+\usepackage{fancyhdr}                  % 添加页眉页脚
+\pagestyle{fancy}
+\fancyhf{}
+\chead{\leftmark}
+\cfoot{\thepage}
+
+
+% new commands
+\renewcommand\kappa{\varkappa}
+\renewcommand\epsilon{\varepsilon}
+\renewcommand\phi{\varphi}
+\newcommand\R{\mathbb{R}}
+\newcommand\N{\mathbb{N}}
+\newcommand\A{\mathbf{A}}
+\newcommand\B{\mathbf{B}}
+\newcommand\C{\mathbf{C}}
+\renewcommand\D{\mathbf{D}}
+\newcommand\bS{\mathbf{S}}
+\newcommand\e{\mathrm{e}}
+\newcommand\const{\mathop{\mathrm{const}}\nolimits}
+\newcommand\sgn{\mathop{\mathrm{sgn}}\nolimits}
+\newcommand\tr{\mathop{\mathrm{tr}}\nolimits}
+\newcommand\rank{\mathop{\mathrm{rank}}\nolimits}
+\newcommand\bx{\bar x}
+\newcommand\bX{\bar X}
+\newcommand\bz{\bar z}
+\newcommand\bU{\bar U}
+\newcommand\bW{\bar W}
+\newcommand\gT{\mathfrak T}
+\newcommand\cT{{\cal T}}
+\newcommand\tT{{\tilde T}}
+\renewcommand\le{\leqslant}
+\renewcommand\ge{\geqslant}
+\newcommand\T{\mathsf{T}}
+\newcommand\eps{\varepsilon}
+\newcommand\cF{{\mathcal F}}
+
+\newcommand{\FigPath}{}
+\newcommand{\Fig}[1]{{\centering #1\par}}
+\newcommand{\placegraphics}[4]{\Fig{\includegraphics[width=#1]{\FigPath #2}}\caption{#3}\label{#4}}
+\newcommand{\placesubfigure}[3]
+{{\centering
+\parbox[c]{#1}
+          {\Fig{\includegraphics[width=#1]{\FigPath #2}\\[1.5ex](#3)}
+          }}
+}
+% in order to generate authors list in different chapters
+\makeatletter
+% \newcommand{\chapterauthor}[1]{%
+%   {\parindent0pt\vspace*{-25pt}%
+%   \linespread{1.1}\large\scshape#1%
+%   \par\nobreak\vspace*{35pt}}
+%   \@afterheading%
+% }
+\newenvironment{pauthor}                %定义环境：paper的作者
+{
+  \begin{center} 
+}
+{
+  \end{center}
+}
+\title{\bf ChaosBook}    % Supply information
+\author{Xiong Wang, Guangrong Chen}              %   for the title page.
+\date{\today}                           %   Use current date. 
+
+
+%\newcommand{\chapterauthor}[1]{%
+%  {\parindent0pt\vspace*{-25pt}%
+%  \linespread{1.1}\large\scshape#1%
+%  \par\nobreak\vspace*{35pt}}
+%  \@afterheading%
+%}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\frontmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\include{dedic} % 写赠言请反注释，并添加内容
+\include{foreword}
+%\include{preface}
+%\include{acknow}
+
+\tableofcontents
+%\include{cblist}
+%\include{acronym}
+
+
+\mainmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{section}{0}
+\include{chaos_chap_0}
+\setcounter{section}{0}
+\include{chaos_chap_1}
+\setcounter{section}{0}
+\include{chaos_one_equi}
+\setcounter{section}{0}
+\include{chaos_none_equi}
+\setcounter{section}{0}
+\include{chaos_line_equi}
+\setcounter{section}{0}
+\include{chaos_anynum_equi}
+\setcounter{section}{0}
+\include{chaos_anytype_equi}
+%\setcounter{section}{0}
+%\include{chaos_sur_equi}
+\setcounter{section}{0}
+\include{chaos_chap_8}
+\setcounter{section}{0}
+\include{chaos_chap_9}
+\setcounter{section}{0}
+\include{chaos_chap_10}
+\setcounter{section}{0}
+\include{chaos_chap_11}
+\setcounter{section}{0}
+\include{chaos_chap_12}
+\setcounter{section}{0}
+\include{chaos_chap_13}
+\setcounter{section}{0}
+\include{chaos_chap_14}
+\setcounter{section}{0}
+\include{chaos_chap_15}
+\setcounter{section}{0}
+\include{chaos_chap_16}
+\setcounter{section}{0}
+\include{chaos_chap_17}
+
+backmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\appendix
+%\include{appendix}
+%\include{glossary}
+%\printindex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+
