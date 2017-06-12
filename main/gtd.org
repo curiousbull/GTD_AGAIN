@@ -180,11 +180,12 @@
     :CREATED:  [2017-06-12 周一 14:40]
     :END:
     :LOGBOOK:
+    CLOCK: [2017-06-12 周一 21:34]--[2017-06-12 周一 21:59] =>  0:25
     CLOCK: [2017-06-12 周一 14:40]--[2017-06-12 周一 14:52] =>  0:12
     :END:
 ** Projects
 
-*** NEXT Chaos Book [4/6]
+*** NEXT Chaos Book [6/6]
     SCHEDULED: <2017-06-09 周五 10:40.+1d>
     :LOGBOOK:
     CLOCK: [2017-06-10 周六 08:32]--[2017-06-10 周六 08:57] =>  0:25
@@ -201,8 +202,8 @@
       $SE_{17}$ does not generate chaos
       $SE_{20}$ does not generate chaos
     - [X] None Equilibrium
-    - [ ] Any Type Equilibrium
-    - [ ] Any Number Equilibrium
+    - [X] Any Type Equilibrium
+    - [X] Any Number Equilibrium
     - [X] Line Equilibrium
     - [X] Surface Equilibrium
     
