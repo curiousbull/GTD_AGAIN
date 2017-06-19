@@ -185,8 +185,12 @@
     :END:
 ** Projects
 
-*** NEXT Chaos Book [6/6]
-    SCHEDULED: <2017-06-09 周五 10:40.+1d>
+*** DONE Chaos Book [6/6]
+    CLOSED: [2017-06-15 周四 16:46] SCHEDULED: <2017-06-16 周五 10:40>
+    :PROPERTIES:
+    :LAST_REPEAT: [2017-06-15 周四 16:46]
+    :END:
+    - State "DONE"       from "NEXT"       [2017-06-15 周四 16:46]
     :LOGBOOK:
     CLOCK: [2017-06-10 周六 08:32]--[2017-06-10 周六 08:57] =>  0:25
     CLOCK: [2017-06-09 周五 14:47]--[2017-06-09 周五 15:12] =>  0:25
