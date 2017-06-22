@@ -1,0 +1,134 @@
+#+TITLE: Scikit-learn 库标准数据集及基本功能
+
+* 数据集总览
+  
+  |----+------------------------+------------------------+------------+--------------|
+  |    | 数据集名称             | 调用方式               | 适用算法   |     数据规模 |
+  |----+------------------------+------------------------+------------+--------------|
+  | 小 | 波士顿房价数据集       | load_boston()          | 回归       |       506x13 |
+  | 数 | 鸢尾花数据集           | load_iris()            | 分类       |        150x4 |
+  | 据 | 糖尿病数据集           | load_diabetes()        | 回归       |       442x10 |
+  | 集 | 手写数字数据集         | load_digits()          | 分类       |      5620x64 |
+  |----+------------------------+------------------------+------------+--------------|
+  | 大 | Olivetti 脸部图像数据集 | fetch_olivetti_faces() | 降维       |    400x64x64 |
+  | 数 | 新闻分类数据集         | fetch_20newsgroups()   | 分类       |              |
+  | 据 | 带标签的人脸数据集     | fetch_lfw_people()     | 分类；降维 |              |
+  | 集 | 路透社新闻语料数据集   | fetch_rcv1()           | 分类       | 804414x47236 |
+  |----+------------------------+------------------------+------------+--------------|
+
+* 波士顿房价数据集
+
+** 说明
+
+   数据集包括 506 组数据，每条数据包括房屋及房屋周围的详细信息，其中包括城镇犯罪率、一氧化氮浓度、住宅
+   平均房间数、到中心区域的加权距离以及自住房平均房价等，适用回归算法。
+
+** 加载方式与重要参数
+
+   - 加载方式
+
+     #+BEGIN_SRC ipython
+       import sklearn
+
+       sklearn.datasets.load_boston()
+     #+END_SRC
+
+   - 重要参数
+
+     =return_X_y= 表示是否返回 target (即价格)，默认为 False，以字典形式返回所有数据；
+     为 True 的话则以(data,target) 形式返回数据。
+
+     #+BEGIN_SRC ipython
+       In [4]: from sklearn.datasets import load_boston
+
+       In [5]: boston = load_boston()
+
+       In [6]: print(boston.data.shape)
+       (506, 13)
+     #+END_SRC
+
+     #+BEGIN_SRC ipython
+       In [1]: from sklearn.datasets import load_boston
+
+       In [2]: data,target = load_boston(return_X_y=True)
+
+       In [3]: print(data.shape)
+       (506, 13)
+
+       In [4]: print(target.shape)
+       (506,)
+     #+END_SRC
+
+* 鸢尾花数据集
+
+** 说明 
+
+   鸢尾花数据集采集的是鸢尾花的测量数据以及其所属的类别，测量数据包括：
+   萼片长度、萼片宽度、花瓣长度、花瓣宽度，类别共分为三类：Iris Setosa,
+   Iris Versicolour, Iris Virginica. 该数据集可用于多分类问题。
+
+** 加载方式与默认参数
+
+   =load_iris()= 返回数据， 默认参数 =return_X_y= 的值默认是 False，此时返回字典
+   形式的全部信息； =return_X_y= 如果设置为 True，则以 (data, target) 形式返回
+   数据。
+
+* 手写数字数据集
+
+  包括 1797 个 0-9 的手写数字数据，每个数字由 8x8 大小矩阵构成，矩阵中值范围是 0-16，表示
+  颜色的深度。
+
+  =load_digits()= 相比 =load_boston()=, 多了一个可选参数 n_class, 'n_class=4' 表示返
+  回 0 到 4 的数据样本。
+
+  #+BEGIN_SRC ipython
+    In [1]: from sklearn import datasets
+
+    In [2]: import matplotlib.pyplot as plt
+
+    In [3]: digits = datasets.load_digits()
+
+    In [4]: plt.matshow(digits.images[0])
+
+    In [5]: plt.show()
+  #+END_SRC
+
+* =sklearn= 库的主要功能
+
+  共分为 6 大部分，分别用于完成分类任务、回归任务、聚类任务、降维任务、模型选择及数据的预处理。
+
+  
+** 分类任务
+
+   | 分类模型   | 加载模块                    |
+   |------------+-----------------------------|
+   | 最近邻算法 | neighbors.NearestNeighbors  |
+   | 支持向量机 | svm.SVC                     |
+   | 朴素贝叶斯 | naive_bayes.GaussianNB      |
+   | 决策树     | tree.DecisionTreeClassifier |
+   | 集成方法   | ensemble.BaggingClassifier  |
+   | 神经网络   | neural_network.MLPClassifier |
+
+** 聚类任务
+
+   | 聚类方法 | 加载模块                        |
+   |----------+---------------------------------|
+   | Ｋ-Means | cluster.KMeans                  |
+   | AP 聚类   | cluster.AffinityPropagation     |
+   | 均值漂移 | cluster.MeanShift               |
+   | 层次聚类 | cluster.AgglomerativeClustering |
+   | DBSCAN   | cluster.DBSCAN                  |
+   | BIRCH    | cluster.Birch                   |
+   | 谱聚类   | cluster.SpectralClustering      |
+   
+** 降维任务
+
+   | 降维方法        | 加载模块                                |
+   |-----------------+-----------------------------------------|
+   | 主成分分析      | decomposition.PCA                       |
+   | 截断 SVD 和 LSA | decomposition.TruncatedSVD              |
+   | 字典学习        | decomposition.SparseCoder               |
+   | 因子分析        | decomposition.FactorAnalysis            |
+   | 独立成分分析    | decomposition.FastICA                   |
+   | 非负矩阵分解    | decomposition.NMF                       |
+   | LDA             | decomposition.LatentDirichletAllocation |
