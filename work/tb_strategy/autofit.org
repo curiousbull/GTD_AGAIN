@@ -1,0 +1,104 @@
+#+TITLE: 自适应均线
+#+AUTHOR: 胡琛
+
+* 介绍
+
+  传统的移动均线包括简单移动平均线，加权移动平均线和指数移动平均线。在利用均线系统对行情进行评判的
+  时候，常常会遇到一种两难的抉择中，是采用短周期均线还是长周期均线。短周期均线可以比较快速地反应行
+  情的变化，但是遇到震荡行情，往往会给出错误的信号，而长周期均线在遇到比较大的行情的时候，反应又会
+  滞后。
+
+  为了避免这种均线系统这种弱点，我们希望能够根据行情来使用不同周期级别的均线，如果遇到了震荡行情，
+  则采用短周期均线，反之，则采用长周期均线。
+
+  但是，如何去评价当前行情是属于震荡还是趋势，这里，我们可以采用考夫曼提出的 “自适应均线” 系统。
+
+* 考夫曼自适应均线系统
+
+  考夫曼自适应均线系统大体分为五个步骤：
+
+** 步骤一：价格方向的表示
+
+   价格方向定义为我们考虑的时间段内价格的净变化，譬如，如果使用 n 天的间隔，那么，相应的价格方向
+   就可以按如下公式定义：
+   
+   #+BEGIN_SRC latex :export results
+     \begin{equation}
+       direction = price - price[n]
+     \end{equation}
+   #+END_SRC
+
+   其中， $price[n]$ 表示的是 n 天前的收盘价， $price$ 表示当前的收盘价。
+
+** 步骤二：波动性
+
+   这里，波动性指的是市场噪音。市场噪音的定义方式很多，这里采用了一种简单做法，即从上一根 K 线到下一
+   根 K 线价格的变化绝对值之和，同样地，以 n 个周期为例，相应的波动性定义如下：
+
+   #+BEGIN_SRC latex :export results
+     \begin{equation}
+       volatility = \sum\limits_{i=0}^{n-1}|price[i+1]-price[i]|
+     \end{equation}
+   #+END_SRC
+
+** 步骤三：效率系数 (Efficiency Ratio)
+
+   将价格方向除以波动性，就得到了相应周期内的效应系数：
+
+   #+BEGIN_SRC latex :export results
+     \begin{equation}
+       ER = direction/volatility
+     \end{equation}
+   #+END_SRC
+
+   从上述公式我们知道，效率系数 ER 只会在 0 到 1 之间变化。当市场在 n 个周期内都是往同一个方向运动的时候，
+   即 $direction = volatility$, 效率系数相应地为 1, 表明当前市场比较强势，我们可以选择在这样的时候进
+   场; 若价格在 n 个周期内并没有变化，则效率系数相应地变为 0, 表明当前市场方向并不确定，我们需要尽量避免
+   在这样的时刻进场。
+
+** 步骤四：利用效率系数对均线进行指数平滑
+
+   将上述的效率系数 =EP= 进行一定的处理，变为一个平滑系数 c, 然后通过类似指数移动平均线处理的方式，
+
+   #+BEGIN_SRC latex :export results
+     \begin{equation}
+       EMA = EMA[1] + c\times (price - EMA[1])
+     \end{equation}
+   #+END_SRC
+
+   我们可以得到自适应均线的处理公式，
+
+   #+BEGIN_SRC latex :export results
+     \begin{equation}
+       AMA = AMA[1] + c\times (AMA - AMA[1])
+     \end{equation}
+   #+END_SRC
+
+   其中，c 的计算公式如下：
+
+   #+BEGIN_SRC latex :export results
+     \begin{eqnarray}
+       fastest = 2/(N+1) &=& 2/(2+1) = 0.6667\\
+       slowest = 2/(N+1) &=& 2/(30+1) = 0.0645\\
+       smooth &=& ER*(fastest-slowest)+slowest\\
+       c = smooth*smooth
+     \end{eqnarray}
+   #+END_SRC
+
+   
+** 步骤五：过滤器设置
+   
+   为了与系统自适应特性保持一致，不能简单用上穿下穿均线来决定买入卖出，因此，需要设置一个过滤器，过滤
+   器的设置可以定义为 AMA 变化的一个百分比：
+
+   #+BEGIN_SRC latex :export results
+     \begin{equation}
+       filter = percentage\times \sigma(AMA-AMA[1],n)
+     \end{equation}
+   #+END_SRC
+   
+   其中， $\sigma(AMA,n)$ 表示 n 个周期内的 $AMA-AMA[1]$ 的标准差。通常，对于变化较快的市场，譬如
+   外汇与期货市场，我们可以采用比较小的过滤器值；对于变化比较慢的市场，譬如股票和利率市场，采用比较大的
+   过滤值。n 的选择，一般选择则采用 20.
+
+   

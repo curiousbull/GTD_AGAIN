@@ -211,6 +211,18 @@
     - [X] Line Equilibrium
     - [X] Surface Equilibrium
     
+      
+*** TODO 经典策略梳理 (TB)
+
+**** NEXT 自适应均线 [1/2]
+     :LOGBOOK:
+     CLOCK: [2017-06-22 四 13:53]--[2017-06-22 四 14:18] =>  0:25
+     CLOCK: [2017-06-22 四 10:57]--[2017-06-22 四 11:22] =>  0:25
+     :END:
+
+     - [X] 策略原理梳理
+     - [ ] TB 代码编写
+
 * Personal
   
 ** Tasks 
