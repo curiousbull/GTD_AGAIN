@@ -210,19 +210,48 @@
     - [X] Any Number Equilibrium
     - [X] Line Equilibrium
     - [X] Surface Equilibrium
-    
-      
-*** TODO 经典策略梳理 (TB)
 
-**** NEXT 自适应均线 [1/2]
+      
+*** NEXT Chaos Book V6
+    
+    - [ ] Chapter4 作者信息
+    - [ ] Chapter5 重新作图 (Part1, Part2)
+    - [ ] Chapter5 参考文献格式 (时间不好定)
+    - [ ] Chapter6 参考文献格式 (时间不好定)
+    - [ ] Chapter7 重写
+    - [ ] Chapter7 作图
+
+**** Time Arrangement
+     
+     2 Days for Re-plot of Chapter5,7; 2 Days for rewrite Chapter 7; One day for author
+     info and rescheduled references.
+    
+*** NEXT 经典策略梳理 (TB) [50%]
+
+**** DONE 自适应均线 [2/2]
+     CLOSED: [2017-06-23 五 10:27]
      :LOGBOOK:
      CLOCK: [2017-06-22 四 13:53]--[2017-06-22 四 14:18] =>  0:25
      CLOCK: [2017-06-22 四 10:57]--[2017-06-22 四 11:22] =>  0:25
      :END:
 
      - [X] 策略原理梳理
+     - [X] TB 代码编写
+
+**** TODO 海龟策略 [0/0]
+     
+     - [ ] 策略原理梳理
      - [ ] TB 代码编写
 
+
+*** Chaos Paper Related [0/1] 
+
+    
+**** TODO 关于吸引盆 [/]
+
+     - [ ] 阅读吸引盆画法文章
+     - [ ] 编写吸引盆画法代码
+       
 * Personal
   
 ** Tasks 
@@ -249,12 +278,16 @@
 **** DONE Introduction
      CLOSED: [2017-06-22 四 22:17]
 
-**** NEXT 无监督学习 [/]
+**** NEXT 无监督学习 [0/3]
      :LOGBOOK:
+     CLOCK: [2017-06-23 五 15:39]--[2017-06-23 五 16:04] =>  0:25
+     CLOCK: [2017-06-23 五 14:50]--[2017-06-23 五 15:15] =>  0:25
      CLOCK: [2017-06-22 四 21:02]--[2017-06-22 四 21:04] =>  0:02
      :END:
      
      - [ ] 聚类
+       - [ ] K-Means 算法
+       - [ ] DBSCAN 算法
      - [ ] 降维
      - [ ] 基于聚类的整图分割实例
 

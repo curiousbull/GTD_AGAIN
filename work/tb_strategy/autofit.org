@@ -70,7 +70,7 @@
 
    #+BEGIN_SRC latex :export results
      \begin{equation}
-       AMA = AMA[1] + c\times (AMA - AMA[1])
+       AMA = AMA[1] + c\times (Close - AMA[1])
      \end{equation}
    #+END_SRC
 
