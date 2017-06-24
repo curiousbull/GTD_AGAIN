@@ -213,6 +213,9 @@
 
       
 *** NEXT Chaos Book V6
+    :LOGBOOK:
+    CLOCK: [2017-06-24 周六 20:46]--[2017-06-24 周六 21:11] =>  0:25
+    :END:
     
     - [ ] Chapter4 作者信息
     - [ ] Chapter5 重新作图 (Part1, Part2)
@@ -225,7 +228,12 @@
      
      2 Days for Re-plot of Chapter5,7; 2 Days for rewrite Chapter 7; One day for author
      info and rescheduled references.
-    
+
+**** Notes
+     
+     - Chapter5 line and sur equi LE4 --> may wrong
+     - Chapter5 line and sur equi LE6~LE9 --> may wrong --> cannot generate chaos
+     
 *** NEXT 经典策略梳理 (TB) [50%]
 
 **** DONE 自适应均线 [2/2]
