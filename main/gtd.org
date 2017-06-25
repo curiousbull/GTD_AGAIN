@@ -214,6 +214,7 @@
       
 *** NEXT Chaos Book V6
     :LOGBOOK:
+    CLOCK: [2017-06-25 周日 19:40]--[2017-06-25 周日 20:05] =>  0:25
     CLOCK: [2017-06-25 周日 14:29]--[2017-06-25 周日 14:54] =>  0:25
     CLOCK: [2017-06-24 周六 20:46]--[2017-06-24 周六 21:11] =>  0:25
     :END:
@@ -237,6 +238,7 @@
      - LE2 XY-plane view
       [[file:~/workflow/work/chaosbook/LE2_XY.jpg]]
      - LE4 $\dot{z}=x^2-axy-bxy-yz$
+     - For surface equilibrium, since SE7 can not be plotted, something must be wrong
      
 *** NEXT 经典策略梳理 (TB) [50%]
 
