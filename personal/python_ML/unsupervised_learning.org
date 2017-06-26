@@ -281,3 +281,100 @@
 *** 实验过程
 
     [[file:unsupervised_learning/DBSCAN_Eg_Plan.png]]
+*** 具体流程 
+
+    1. 建立工程，导入 sklearn 相关包
+
+       #+BEGIN_SRC ipython
+         import numpy as np
+         from sklearn import DBSCAN
+       #+END_SRC
+
+       其中， =DBSCAN= 主要参数有：
+       
+       - 'eps': 两个样本被看作邻居节点的最大距离
+
+       - min_samples: 簇的样本数
+
+       - metric: 表示距离计算方式
+
+       - 譬如：
+
+         #+BEGIN_SRC python
+           sklearn.cluster.DBSCAN(eps=0.5,min_samples=5,metric='euclidean')
+         #+END_SRC
+         
+    2. 读入数据并进行处理
+       
+       #+BEGIN_SRC ipython
+         import numpy as np
+         import sklearn.cluster as skc
+         from sklearn import metrics
+         import matplotlib.pyplot as plt
+
+         mac2id = dict()
+         onlinetimes = []
+         f = open('TestData.txt')
+         for line in f:
+             mac = line.split(',')[2]
+             onlinetime=int(line.split(',')[6])
+             starttime=int(line.split(',')[4].split(' ')[1].split(':')[0])
+             if mac not in mac2id:
+                 mac2id[mac] = len(onlinetimes)
+                 onlinetimes.append((starttime,onlinetime))
+             else:
+                 onlinetimes[mac2id[mac]] = [(starttime,onlinetime)]
+         real_X = np.array(onlinetimes).reshape((-1,2))
+       #+END_SRC
+
+    3. 上网时间聚类，创建 DBSCAN 算法实例，并进行训练，获得标签
+
+       #+BEGIN_SRC ipython
+         X = real_X[:, 0:1]
+
+         db = skc.DBSCAN(eps=0.01, min_samples=20).fit(X)
+         labels = db.labels_
+
+         print("Labels:"+Labels)
+
+         ratio = len(labels[labels[:] == -1])/len(labels)
+         print("Noise ratio: %.2f"%ratio)
+
+         n_clusters = len(set(labels)) - (1 if -1 in labels else 0)
+
+         print("Estimated number of clusters: %d" % n_clusters_)
+         print("Silhouette Coefficient: %.3f"%metrics.silhouette_score(X,labels))
+
+         for i in range(n_clusters_):
+             print("Cluster ",i,":")
+             print(list(X[labels==i].flatten()))
+       #+END_SRC
+
+    4. 输出标签，查看结果
+
+    5. 画出直方图
+
+       #+BEGIN_SRC ipython
+         plt.hist(X,24)
+         plt.show()
+       #+END_SRC
+*** 注意事项
+
+    1. 轮廓系数
+
+       - 定义样本 $i$ 到同簇其他样本的平均距离为 $a_i$, $a_i$ 越小则表明样本 $i$ 越
+         应该被聚类到该簇，将 $a_i$ 成为样本 $i$ 的簇内不相似度
+
+       - 定义样本 $i$ 到其他簇 $C_j$ 的所有样本的平均距离 $b_{ij}$, 称为样本 $i$ 与
+         簇 $C_j$ 的不相似度，定义为样本 $i$ 的簇间不相似度，定义样本 $i$ 的簇间不相似
+         度为 $b_i=arg_{min}b_{i1},b_{i2},\ldots,b_{ik}$
+
+       - 显然， $a_i$ 越小， $b_i$ 越大则越好，因此，定义样本 $i$ 的轮廓系数 (silhouette):
+         
+         #+BEGIN_SRC latex :export results
+           \begin{equation}
+             s(i) = \frac{b(i)-a(i)}{\max{a(i),b(i)}}
+           \end{equation}
+         #+END_SRC
+
+       - 当 $s(i)$ 为 1 时，聚类效果最好，为 $-1$ 时，聚类效果最差
