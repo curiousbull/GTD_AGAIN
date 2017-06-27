@@ -1,34 +1,39 @@
 \chapter{Strange Attractors with Various Equilibrium Types}
-\lable{chap:chaosanytypeequi}
+\label{chap:anytype_equi}
 
 \begin{pauthor}
   J.C. Sprott\\
   Department of Physics, University of Wisconsin, Madison, WI 53706, USA\\
+  \email{csprott@wisc.edu}
 \end{pauthor}
 
-\abstract{Of the eight types of hyperbolic equilibrium points in threedimensional
-flows, one is overwhelmingly dominant in dissipative
-chaotic systems. This chapter also shows examples of chaotic systems for
-each of the eight types as well as one without any equilibrium and
-two that are nonhyperbolic. The systems are a generalized form of the
-Nos´e–Hoover oscillator with a single equilibrium point. Six of the eleven
-cases have hidden attractors, and six of them exhibit multistability for
-the chosen parameters.}
+\abstract{
+  For the systems with a generalized form of the Nos'e-Hoover oscillator
+  with a single equilibrium point, there exists eight types of hyperbolic
+  equilibrium points in three-dimensional flows. This chapter shows the
+  examples of chaotic systems for each of the eight types as well as one
+  without any equilibrium and two that are non-hyperbolic. Among the total
+  eleven cases of the system, six of them have hidden attractors while the
+  other exhibit multi-stability for the chosen parameters.
+}
 
 \section{Introduction}
-Nearly all the common examples of strange attractors in three-dimensional autonomous
+Almost all the common examples of strange attractors in three-dimensional autonomous
 systems of ordinary differential equations occur in systems for which there
-are one or more spiral saddle points, where the Shilnikov condition is satisfied \cite{01Shilnikov1998Methods}. Such
-attractors have been called “self-excited” since they can be found by choosing initial
-conditions on the unstable manifold in the vicinity of one of these equilibria \cite{02Leonov2011Localization,03Leonov2012IWCFTA2012}.
+are one or more spiral saddle points, where the \v{S}i'lnikov condition is satisfied \cite{A2015Methods}.
+These attractors have been called “self-excited” since they can be found by choosing initial
+conditions on the unstable manifold in the vicinity of one of these equilibria \cite{Leonov2011Localization,leonov2013hidden}.
 
-It is natural to ask whether strange attractors can exist in systems with only one
-equilibrium of the other eighteen types that can occur in such systems. A system that
-admits a wide variety of chaotic solutions is a generalized version of the Nos´e–Hoover
-oscillator \cite{04shuichi1991constant,05Hoover1995Remark} given by
+For systems that admits a wide variety of chaotic solutions like the generalized
+version of the Nos'e-Hoover oscillator\cite{shuichi1991constant,PhysRevE.51.759}
+as showed in Eq.\ref{eq:anytype_equi_01}, it's then natural to bring the question
+that whether strange attractors can exist in systems with only one
+equilibrium of the other eighteen types that can occur in such systems.
+
 \begin{equation}
 \label{eq:anytype_equi_01}
-    \begin{array}
+\left\{
+    \begin{array}{l}
       \dot{x} = y \\
       \dot{y} = -x+yz \\
       \dot{z} = f(x,y,z) 
@@ -40,30 +45,34 @@ where
 \label{eq:anytype_equi_02}
 f(x, y, z) = a_1x + a_2y + a_3z + a_4x^2 + a_5y^2 + a_6xy + a_7xz + a_8yz + a_9
 \end{equation}
-is the most general function $f(x, y, z)$ with quadratic nonlinearities that is guaranteed
-to provide a single equilibrium point at $(x, y, z) = (0, 0, −a_9/a_3)$ provided $a_3 = 0$ or
-$a_9 = 0$. An equilibrium point, sometimes called a fixed point or singular point, is a
-value of $(x, y, z)$ where $\dot{x} = \dot{y} = \dot{z} = 0$. Note that it is also possible to include a $z^2$
-term in Eq. (\ref{eq:anytype_equi_02}) and adjust the constant $a_9$ so that the two roots of $f(x, y, z)=0$
+
+is the most general function with quadratic nonlinearities that is guaranteed
+to provide a single equilibrium point at $(x, y, z) = (0, 0, −a_9/a_3)$ with
+$a_3 \neq 0$ or $a_9 = 0$. An equilibrium point, sometimes called a fixed point or singular point, is a
+value of $(x, y, z)$ where $\dot{x} = \dot{y} = \dot{z} = 0$. It's also possible
+to include a $z^2$ term in Eq. \ref{eq:anytype_equi_02} and adjust the constant
+$a_9$ so that the two roots of $f(x, y, z)=0$
 coincide, but that turns out to be unnecessary for the present purpose.
 
-The simplest chaotic system of this form has $f = 1 − y^2$ and has been much
-studied, but it is a conservative system without any equilibrium points. However,
-there is a weakly dissipative form of System (\ref{eq:anytype_equi_01}) with $f
-= 1+\epsilon{}tanh x − y^2$ that has
-a strange attractor but with no equilibrium points since $a_3 = 0$ and $a_9 =0$\cite{06Sprott2014Heat}. Note
-that all systems in the form of Eq. (\ref{eq:anytype_equi_01}) have a nonlinear damping whose magnitude
-and sign depend on the time average of z along the orbit because of the yz term.
+The simplest chaotic system of Eq. \ref{eq:anytype_equi_01} has $f = 1 − y^2$
+and has been studied much. Nevertheless, such system is conservative without
+any equilibrium points. However, if with a weakly dissipative form of Eq. \ref{eq:anytype_equi_01},
+with $f = 1+\epsilon{}tanh x − y^2$ and then there brings a strange attractor
+but with no equilibrium points since $a_3 = 0$ and $a_9 \neq 0$. All systems
+of Eq. \ref{eq:anytype_equi_01} have a nonlinear damping whose magnitude
+and sign depend on the time average of $z$ along the orbit because of the $yz$ term.
 
-System (\ref{eq:anytype_equi_01}) with various forms of $f(x, y, z)$ has previously been shown to have
-strange attractors for two of the equilibrium types
-\cite{07MALIHE2013SIMPLE,08Sprott2015A}. The goal of this chapter is to
-give simple examples of the remaining types, which have not been previously reported.
+As showed in \cite{molaie2013simple,sprott2015chaotic}, systems of Eq. \ref{eq:anytype_equi_01}
+with various forms of $f(x,y,z)$ can have strange attractors for two of
+the equilibrium types. In this chapter, we'd love to give simple examples
+of the remaining types but have not been reported.
 This involves putting appropriate constraints on the eigenvalues $\lambda$ given by
+
 \begin{equation}
-\label{eq:anytype_equi_03}
-\lambda^3 +\left( \frac{a_9}{a_3}−a_3 \right)\lambda^2 + (1 − a_9)λ − a3 = 0
+  \label{eq:anytype_equi_03}
+  \lambda^3 +\left( \frac{a_9}{a_3}−a_3 \right)\lambda^2 + (1 − a_9)λ − a3 = 0
 \end{equation}
+
 and searching the nine-dimensional parameter space and three-dimensional space
 of initial conditions for solutions that are bounded and dissipative with a positive
 Lyapunov exponent and then simplifying the resulting systems to the extent possible
@@ -71,11 +80,12 @@ by removing unnecessary terms and setting parameters to unity.
 
 \section{System with no equilibrium}
 
-Shown first is a simple example of a dissipative chaotic system in the form of Eq. (\ref{eq:anytype_equi_01})
+A simple example of a dissipative chaotic system in the form of Eq. (\ref{eq:anytype_equi_01})
 with no equilibrium given by
 \begin{equation}
 \label{eq:anytype_equi_04}
-    \begin{array}
+\left\{
+    \begin{array}{l}
       \dot{x} = y \\
       \dot{y} = -x+yz \\
       \dot{z} = x^2-4y^2+1
@@ -83,11 +93,11 @@ with no equilibrium given by
   \right.
 \end{equation}
 
-For initial conditions of (0, 2, 0), it has a strange attractor with Lyapunov exponents of
-(0.0131, 0, −0.0155) and a relatively large Kaplan–Yorke dimension of 2.8455 as shown
-in Fig. \ref{fig:anytype_01}. This strange attractor is “hidden” in the sense that
+For initial conditions of $(0, 2, 0)$, it has a strange attractor with Lyapunov exponents of
+$(0.0131, 0, −0.0155)$ and a relatively large Kaplan–Yorke dimension of $2.8455$ as shown
+in Fig. \ref{fig:anytype_01}. This strange attractor is ``hidden'' in the sense that
 it cannot be found by using an initial condition in the vicinity of an equilibrium point
-since no such point exists \cite{02Leonov2011Localization,03Leonov2012IWCFTA2012}.
+since no such point exists \cite{Leonov2011Localization,leonov2013hidden}.
 
 The system is time-reversal invariant under the transformation $(x, y, z, t)\rightarrow(x, −y, −z, −t)$.
 The strange attractor is slightly asymmetric and is accompanied
@@ -107,7 +117,7 @@ initial conditions that give conservative orbits (tori), and the yellow backgrou
 the basin of attraction for the strange attractor. It appears that there are additional
 thin tori toward the outer edge of the strange attractor. The basin of attraction of
 the strange attractor is the whole of state space except for the region of finite volume
-occupied by tori. Only a few other such examples are known \cite{06Sprott2014Heat,09Politi1986Coexistence,10Sprott2014A}.
+occupied by tori. Only a few other such examples are known \cite{sprott2014heat,politi1986coexistence,sprott2014dynamical}.
 
 \begin{figure}[htbp]
 \centering
@@ -127,10 +137,14 @@ orbits (tori), and the yellow background is the basin of attraction for the stra
 \end{figure}
 
 \section{Hyperbolic examples}
-There are eight types of hyperbolic equilibrium points in three-dimensional flows as
-shown in Fig. \ref{fig:anytype_03}. A hyperbolic equilibrium is one in which all eigenvalues have a
-nonzero real part. Type 7 is overwhelmingly the most common in dissipative chaotic
-systems, but examples also occur for the other seven cases as shown below.
+
+Eight types of hyperbolic equilibrium points in three-dimensional flows are showed
+in Fig. \ref{fig:anytype_03}. A equilibrium is called hyperbolic if with non-zero
+real part of all eigenvalues. Among the eight cases with hyperbolic equilibrium,
+Type 7 is overwhelmingly the most common in dissipative chaotic systems while examples
+other also occur for the other seven cases. Each case is showed below.
+For each case, we give the index $0\sim 8$ according to the number of eigenvalues of the
+equilibrium.
 
 \begin{figure}[htbp]
 \centering
@@ -140,6 +154,7 @@ systems, but examples also occur for the other seven cases as shown below.
 \end{figure}
 
 \subsection{Equilibrium Type 1 (index-0 node)}
+
 This system has a single equilibrium point with three real eigenvalues, all negative.
 Hence it is a stable node with index 0, where the index is the number of eigenvalues
 with a positive real part, or, equivalently, the dimension of the unstable manifold.
@@ -147,7 +162,8 @@ A system of this type is
 
 \begin{equation}
 \label{eq:anytype_equi_05}
-    \begin{array}
+\left\{
+    \begin{array}{l}
       \dot{x} = y \\
       \dot{y} = -x+yz \\
       \dot{z} = −z − 8xy + 0.3xz − 3.
@@ -155,11 +171,12 @@ A system of this type is
   \right.
 \end{equation}
 
-It has an equilibrium with eigenvalues given by $\lambda = (−0.381966, −1, −2.618034)$ and
-a strange attractor with Lyapunov exponents of (0.0505, 0, −17.2283). The strange
-attractor is hidden since all initial conditions in the vicinity of the equilibrium are
-attracted to the equilibrium point. It is also multistable since the strange attractor
-coexists with a point attractor. Initial conditions close to the attractor are (−2, 1, 0.7),
+Such system has equilibrium with eigenvalues given as $\lambda = (−0.381966, −1, −2.618034)$ and
+a strange attractor with Lyapunov exponents of $(0.0505, 0, −17.2283)$.
+Since the vicinity of the equilibrium cannot attracted to the equilibrium point,
+the strange attractor  is hidden.
+It is also multistable since the strange attractor
+coexists with a point attractor. Initial conditions close to the attractor are $(−2, 1, 0.7)$,
 and the basin of attraction is very small.
 
 \subsection{Equilibrium Type 2 (index-1 saddle point)}
@@ -208,7 +225,7 @@ relatively large.
 \subsection{Equilibrium Type 4 (index-3 repellor)}
 This system has three real eigenvalues, all positive, and hence it is an unstable node,
 sometimes simply called a “repellor”. A system of this type has recently been reported
-\cite{08Sprott2015A} and has the form
+\cite{sprott2015chaotic} and has the form
 \begin{equation}
 \label{eq:anytype_equi_08}
   \left\{
@@ -231,7 +248,7 @@ equilibrium lead to unbounded solutions. Initial conditions close to the attract
 \subsection{Equilibrium Type 5 (index-0 spriral node)}
 This system has one real negative eigenvalue, and a complex conjugate pair with a
 negative real part. Twenty-three chaotic examples of this type have recently been
-reported \cite{07MALIHE2013SIMPLE}. One typical case in the form of Eq. (\ref{eq:anytype_equi_01}) is
+reported \cite{molaie2013simple}. One typical case in the form of Eq. (\ref{eq:anytype_equi_01}) is
 \begin{equation}
 \label{eq:anytype_equi_09}
   \left\{
@@ -273,10 +290,10 @@ of attraction are very small.
 \subsection{Equilibrium Type 7 (index-2 spiral saddle)}
 This system has one real negative eigenvalue, and a complex conjugate pair with
 a positive real part. This is overwhelmingly the most common type with abundant
-examples including the familiar Lorenz \cite{11Lorenz1963Deterministic} and R¨ossler \cite{12R1976An} systems, although they
+examples including the familiar Lorenz \cite{lorenz1963deterministic} and R¨ossler \cite{rossler1976equation} systems, although they
 have multiple equilibrium points. The simplest such system with a single equilibrium
-point is the jerk system $\dddot{x} + 2.017\ddot{x} − \dot{x}^2 + x =0$\cite{13Sprott1997Simplest}. Other simple examples are
-Sprott Cases I, J, L, N, and R \cite{14Sprott1994Some}. There are also a number of systems in the form
+point is the jerk system $\dddot{x} + 2.017\ddot{x} − \dot{x}^2 + x =0$\cite{sprott1997simplest}. Other simple examples are
+Sprott Cases I, J, L, N, and R \cite{sprott1994some}. There are also a number of systems in the form
 of Eq. (\ref{eq:anytype_equi_01}) that have not been studied including the following
 \begin{equation}
 \label{eq:anytype_equi_11}
@@ -332,7 +349,7 @@ $\lambda = 0$ , Eq. (\ref{eq:anytype_equi_03}) shows that $a_3 = 0$ , and thus
 according
 to Eq. (\ref{eq:anytype_equi_03}), an equilibrium point
 is present only if $a_9 = 0$, in which case there is an infinite line of equilibrium points
-along the z-axis at (0, 0, z). Such cases have been previously studied \cite{15Jafari2013Simple} including
+along the z-axis at (0, 0, z). Such cases have been previously studied \cite{molaie2013simple} including
 ones in the form of Eq. (\ref{eq:anytype_equi_01}), but they fall outside the scope of the present paper which
 involves chaotic systems with a single equilibrium point. Thus nine of the eleven
 possible nonhyperbolic isolated equilibrium points cannot occur in Eq. (\ref{eq:anytype_equi_01}), although
@@ -413,7 +430,7 @@ There are eleven types of nonhyperbolic equilibrium points that can occur in thr
 systems. However, nine of the eleven types cannot occur in isolation for
 the chosen system. The other two cases admit chaotic solutions with a single selfexcited
 strange attractor as shown in Fig. \ref{fig:anytype_05}. All of the systems should have interesting
-basins of attraction \cite{16Chaudhuri2014Complicated} and a rich set of bifurcations as the parameters are varied
+basins of attraction \cite{chaudhuri2014complicated} and a rich set of bifurcations as the parameters are varied
 and deserve further study.
 
 Given that systems in the form of Eq. (\ref{eq:anytype_equi_01}) can exhibit chaos in the absence of
@@ -428,4 +445,4 @@ of hyperbolic equilibrium points that occur in four dimensions, but that answer 
 be left to a subsequent publication.
 
 \bibliographystyle{spphys}
-\bibliography{chaos_any_equi}
+\bibliography{chaos_anytype_equi}
