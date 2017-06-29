@@ -221,8 +221,12 @@
     - [X] Line Equilibrium
     - [X] Surface Equilibrium
 
-*** NEXT Chaos Book V6
+*** NEXT Chaos Book V6 [6/7]
     :LOGBOOK:
+    CLOCK: [2017-06-29 周四 11:11]--[2017-06-29 周四 11:37] =>  0:26
+    CLOCK: [2017-06-28 周三 16:05]--[2017-06-28 周三 17:05] =>  1:00
+    CLOCK: [2017-06-28 周三 14:42]--[2017-06-28 周三 15:04] =>  0:22
+    CLOCK: [2017-06-28 周三 09:07]--[2017-06-28 周三 10:03] =>  0:56
     CLOCK: [2017-06-27 周二 20:11]--[2017-06-27 周二 21:49] =>  1:38
     CLOCK: [2017-06-27 二 15:48]--[2017-06-27 二 16:13] =>  0:25
     CLOCK: [2017-06-27 周二 10:14]--[2017-06-27 周二 10:39] =>  0:25
@@ -235,23 +239,25 @@
     CLOCK: [2017-06-24 周六 20:46]--[2017-06-24 周六 21:11] =>  0:25
     :END:
     
-    - [ ] Chapter4 作者信息
+    - [X] Chapter4 作者信息
     - [X] Chapter5 重新作图 (Part1, Part2)
-    - [ ] Chapter5 参考文献格式 (时间不好定)
-    - [ ] Chapter6 参考文献格式 (时间不好定)
-    - [-] Chapter7 重写
+    - [X] Chapter5 参考文献格式 (时间不好定)
+    - [X] Chapter6 参考文献格式 (时间不好定)
+    - [X] Chapter7 重写
       - [X] Case 1
-      - [ ] Case 2
-      - [ ] Case 3
-      - [ ] Case 4
-      - [ ] Case 5
-      - [ ] Case 6
-      - [ ] Case 7
-      - [ ] Case 8
-      - [ ] Case 9
-      - [ ] Case 10
-      - [ ] Case 11
-    - [ ] Chapter7 作图
+      - [X] Case 2
+      - [X] Case 3
+      - [X] Case 4
+      - [X] Case 5
+      - [X] Case 6
+      - [X] Case 7
+      - [X] Case 8
+      - [X] Case 9
+      - [X] Case 10
+      - [X] Case 11
+    - [X] Chapter7 作图
+    - [ ] Chapter5 表格调整
+      cannot adjust, hold on 
 
 **** Time Arrangement
      
