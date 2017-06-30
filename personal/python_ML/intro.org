@@ -60,3 +60,4 @@
   - 《Machine Learning》 -- Andrew Ng
   - 《CS231n》 -- Fei-Fei Li (深度学习)
   - 《Reinforcement Learning》 -- David Silver (强化学习)
+    
