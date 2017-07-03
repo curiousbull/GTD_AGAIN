@@ -1,0 +1,132 @@
+#+TITLE: K 线形态匹配代码解读
+#+AUTHOR: 胡琛
+
+* 主函数
+
+  #+BEGIN_SRC ipython
+    if __name__ == '__main__':
+      lines_arr = None
+      data = np.loadtxt('pattern5_cluster.txt')
+      for i in range(data.shape[0]):
+        pattern = data[i].reshape((5,5)).T*10
+        p = Pattern(pattern)
+        patterns = p.match_patterns()
+        if patterns is np.NAN:
+          continue
+        lines = p.save_pattern(patterns,'./pattern' + str(i))
+        if lines_arr == None:
+          lines_arr = lines[np.newaxis,:,:]
+        else:
+          lines_arr = np.vstack([lines_arr,lines[np.newaxis,:,:]])
+      order_lines(lines_arr)
+  #+END_SRC
+  
+  1. 'pattern5_cluster.txt' 对应的数据结构是每 5 根 Bar 的开、高、低、收、量 5 个数据，
+     相应的，读取的 'txt' 文档每行有 25 个数据，需要进行处理
+
+     #+BEGIN_SRC ipython
+       for i in range(data.shape[0]):
+           pattern = data[i].reshape((5,5)).T*10
+     #+END_SRC
+
+  2. 'pattern' match 的方式是通过相关系数来比较，返回的 'pattern' 是 =numpy.array= 格式，
+     返回的是符合条件的股票的信息
+
+* Pattern 类的解读
+
+  1. 初始化
+
+     #+BEGIN_SRC ipython
+       def __init__(self,data):
+           self.data = data
+           self.data_length = self.data.shape[0]
+           self.distribution_tol = None
+           self.__future_length = self.data_length * 2
+           self.__patterns = None
+           self.__conn = self.__connect_database()
+           self.__distribution_days = None
+           self.__statistics = None
+           self.__EPs = 0
+           self.__clusters = None
+           self.__percent = None
+     #+END_SRC
+
+  2. pattern 匹配
+
+     #+BEGIN_SRC ipython
+       def match_patterns(self,similarity=0.7):
+         '''
+         match patterns in history data
+         return the most similar 100 patterns whose similarity reach 0.7
+         return a 3d array
+         '''
+           try:
+             self.__clear_db_correlation()
+             self.__match_stocks(similarity)
+             similarities = self.__get_all_similarities()
+             if similarities.shape[0] == 0:
+               return None
+             patterns = self.__get_patterns(similarities)
+             self.__predict(patterns)
+             return patterns
+           finally:
+             self.__conn.close()
+     #+END_SRC
+
+     1) '__clear_db_correlation()' ： 清除表内容，同时保持表结构，相比 'DELETE', 'TRUNCATE' 速度更快，
+        但是不能恢复
+
+        #+BEGIN_SRC ipython
+          def __clear_db_correlation(self):
+              cur = self.__conn.cursor()
+              sql = 'truncate table correlation1'
+              cur.execute(sql)
+              cur.close()
+        #+END_SRC
+
+     2) '__match_stocks(similarity)'
+
+        #+BEGIN_SRC ipython
+          def __match_stocks(self,similarity_pro):
+              sql = 'insert into correlation1 values(%s,%s,%s)'
+              cur = self.__conn.cursor()
+              for id in range(117,500,1):
+                if (id+1)%100==0:
+                  print(id+1)
+                  self.__conn.commit()
+                data = self.__get_data_from_symbol_id(id+1)
+                for j in range(data.shape[0] - self.data_length + 1):
+                  similarity = self.__count_similarity(self.data,data[j:j + self.data_length,1:6])
+                  if similarity > similarity_pro*6:
+                    parameters = (str(similarity),str(data[j,0]),str(id+1))
+                    cur.execute(sql,parameters)
+              self.__conn.commit()
+              cur.close()
+        #+END_SRC
+
+        - '__get_data_from_symbol_id(self, id)' ：取出 id 对应的开、高、低、收、量的股票日线数据
+
+          #+BEGIN_SRC ipython
+            def __get_data_from_symbol_id(self,id):
+                sql = 'select id,open_price,high_price,low_price,close_price,volume from stock_daily where symbol_id=%s and price_date<\'2016-01-01\' \
+                and price_date>\'2010-01-01\''%id
+                cur = self.__conn.cursor()
+                cur.execute(sql)
+                data = np.array(cur.fetchall(),dtype=np.float64)
+                cur.close()
+                return data
+          #+END_SRC
+
+        - '__count_similarity(self, arr1, arr2)' ： 比较两个序列的相关度，其中，量对应的相关系数
+          权重设为 2.
+
+          #+BEGIN_SRC ipython
+            def __count_similarity(self,arr1,arr2):
+                cor_open  = self.__correlation(arr1[:,0],arr2[:,0])
+                cor_high  = self.__correlation(arr1[:,1],arr2[:,1])
+                cor_low   = self.__correlation(arr1[:,2],arr2[:,2])
+                cor_close = self.__correlation(arr1[:,3],arr2[:,3])
+                cor_volume = self.__correlation(arr1[:,4],arr2[:,4])
+                similarity = cor_open+cor_high+cor_low+cor_close+cor_volume*2
+                return similarity
+          #+END_SRC
