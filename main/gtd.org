@@ -290,7 +290,7 @@
      - [ ] 策略原理梳理
      - [ ] TB 代码编写
 
-*** Chaos Paper Related [0/1] 
+*** TODO Chaos Paper Related [0/1]
 
     
 **** TODO 关于吸引盆 [/]
