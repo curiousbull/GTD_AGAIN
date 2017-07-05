@@ -234,3 +234,87 @@
               self.__statistics = statistics
               self.__EPs = EPs
         #+END_SRC
+* 聚类函数解读
+  
+  1. 'connect_db()' ：连接数据库
+     
+     #+BEGIN_SRC ipython
+       def connect_db():
+         conn = pymysql.connect('localhost','root','123456','securities_master')
+         return conn
+     #+END_SRC
+      
+  2. 'save_data(period)' ：
+     
+     #+BEGIN_SRC ipython
+       def save_data(period):
+         data = select_patterns(period)
+         regulation(data,period)
+         np.savetxt('pattern' + str(period) + '.txt',data)
+     #+END_SRC
+
+  3. 'select_patterns(period)' ： 随机从数据库中读取 20 个 patterns
+     
+     #+BEGIN_SRC ipython
+       def select_patterns(period):
+       '''
+       Select patterns from database randomly
+       each stock select 20 patterns
+
+       parameter:
+       period: the period of patterns be selected
+
+       return:2d array,each row is a pattern
+       '''
+         conn = connect_db()
+         cur = conn.cursor()
+         data = np.NAN
+         for symbol_id in range(506,3580,1):
+           if symbol_id % 100 == 0:
+             print symbol_id
+           cur.execute('select id from daily_price where symbol_id=%s'%symbol_id)
+           ids = np.array(cur.fetchall(),np.int32)
+           if ids.size > 120: # 股票价格周期数必须大于 120
+             id_index = np.random.randint(0,ids.size-1-period,20)
+             for start in ids[id_index]:
+               start = start[0]
+               cur.execute('select open_price,high_price,low_price,close_price,volume from daily_price where id between %s and %s'%(start,start+period-1))
+               pattern = np.array(cur.fetchall(),np.float64)
+               if data is np.NAN:
+                 data = pattern.T.ravel()
+               else:
+                 data = np.vstack([data,pattern.T.ravel()])
+         conn.close()
+         return data
+     #+END_SRC
+  
+  4. 'regulation(data, period)' ： 归一化处理
+
+     #+BEGIN_SRC ipython
+       def regulation(data,period):
+       '''
+       regulation each pattern to [0,1]
+       parameter:
+       data:2d array of patterns
+       period:period of each pattern
+       '''
+         for i in range(data.shape[0]):
+           data[i,0:4*period] = reg(data[i,0:4*period])
+           data[i,4*period:5*period] = reg(data[i,4*period:5*period])
+
+       def reg(data):
+         min = np.min(data)
+         lag = np.max(data) - min
+         data = (data-min)/lag
+         return data
+     #+END_SRC
+
+  5. ’cluster(filename, n_clusters)' ：聚类
+
+     #+BEGIN_SRC ipython
+       def cluster(filename,n_clusters):
+         data = np.loadtxt(filename)
+         kmeans = KMeans(n_clusters=n_clusters,random_state=0).fit(data)
+         result = kmeans.cluster_centers_
+         np.savetxt(filename + '_cluster' + '.txt',result)
+     #+END_SRC
