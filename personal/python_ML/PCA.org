@@ -124,5 +124,80 @@
    确定方向即可。
 
 *** 确定点
-
     
+    1. 首先，对于 $(x_1,x_2,\ldots,x_n)$ 这些点，先确定出一个代表点，最简单的方式就是用这些点
+       的平均作为代表，即 $x_0 = \frac{1}{n}\sum\limits^n_{k=1}x_k.
+       (*直觉而言，对于这些点的分割直线，必然会穿过这些点的重心*)
+    2. 令 $x_0 = m$, 如果令直线的单位向量为 $e$, 那么，相应直线上任意一点，可以表示为
+       
+       #+BEGIN_SRC latex :exports results
+         \begin{equation}
+           x^{\prime}_k = m + a_ke
+         \end{equation}
+       #+END_SRC
+       
+       其中， $a_k$ 是 $x^{\prime}_k$ 到点 $m$ 的距离。
+
+       我们需要做的是，对最小平方误差取最小，
+
+       #+BEGIN_SRC latex :exports results
+         \begin{equation}
+           \begin{array}{lcl}
+             arg\min\limits_{a_1,\ldots,a_n,e}J_1(a_1,\ldots,a_n,e) &=&
+             arg\min\limits_{a_1,\ldots,a_n,e}  \sum\limits^n_{k=1}||(m+a_ke)-x_k||^2\\
+                                                                    &=&
+             arg\min\limits_{a_1,\ldots,a_n,e}\sum\limits^n_{k=1}a_k^2||e||^2-2\sum\limits^n_{k=1}
+                         a_ke^T(x_k-m)+\sum\limits^n_{k=1}||x_k-m||^2
+             \end{array}
+         \end{equation}
+       #+END_SRC
+    
+       求上式对 $a_k$ 的偏导，且有 $||e||^2 = 1$, 因此有
+
+       #+BEGIN_SRC latex :exports results
+         \begin{equation}
+           a_k = e^t(x_k-m)
+         \end{equation}
+       #+END_SRC
+
+       然后对 $e$ 求偏导，首先将上式代入 $J_1$, 有：
+
+       #+BEGIN_SRC latex :exports results
+         \begin{equation}
+           \begin{array}{lcl}
+             J_1(e) &=&\sum\limits^n_{k=1}a_k^2||e||^2-2\sum\limits^n_{k=1}a_k^2
+                        +\sum\limits^n_{k=1}||x_k-m||^2\\
+                    &=&\sum\limits^n_{k=1}e^T(x_k-m)(x_k-m)^Te+\sum\limits^n_{k=1}||x_k-m||^2\\
+                    &=&-e^TSe+\sum\limits^n_{k=1}||x_k-m||^2
+           \end{array}
+         \end{equation}
+       #+END_SRC
+    
+       其中， $S=\sum\limits^n_{k=1}e^T(x_k-m)(x_k-m)^Te$ 称为散列矩阵，然后对 $e$ 求偏导，其中 $||e||^2=1$,
+       引入拉格朗日乘子 $\lambda$, 令 $u=e^TSe-\lambda(e^Te-1)$, 求偏导，有
+
+       #+BEGIN_SRC latex :exports results 
+         \begin{equation}
+           \partial u/\partial e = 2Se - 2\lambda e
+         \end{equation}
+       #+END_SRC
+    
+       当上式为 0 时，有 $Se=\lambda e$,两边同时除以 $n-1$, 相当于对协方差矩阵求特征向量。
+    
+       #+BEGIN_QUOTE
+       函数 $z=f(x,y)$ 在点 $(x_0,y_0)$ 存在偏导数，且在该点取得极值，则有 $f^{\prime}_x(x_0,y_0)=0$ 和
+       $f^{\prime}_y(x_0,y_0)=0$
+       #+END_QUOTE
+       
+       #+BEGIN_QUOTE
+       若函数 $z=f(x,y)$ 在点 $(x_0,y_0)$ 的某领域内具有一阶和二阶连续偏导数，且 $f^{\prime}_x(x_0,y_0)=0,
+       f^{\prime}_y(x_0,y_0)=0$, 令 $A=f_{xx}(x_0,y_0), B=f_{xy}(x_0,y_0), C=f_{yy}(x_0,y_0)$, 则
+       - 当 $AC - B^2>0$ 时，具有极值，且当 $A<0$ 时，取极大， $A<0$ 时取极小
+       - 当 $AC - B^2<0$ 时，没有极值
+       - 当 $AC - B^2=0$ 时，不能确定
+       #+END_QUOTE
+
+
+       从不同思路出发，得到同一个结果，对协方差矩阵求特征向量，求得后特征向量上就成为了新的坐标，如下图：
+
+       [[file:PCA/least_sq_err_02.png]]
