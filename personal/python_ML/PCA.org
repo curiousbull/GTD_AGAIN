@@ -61,6 +61,7 @@
     在上图中，已知均值维 0，因此方差为：
 
     #+NAME: eq:pca_01
+    #+BEGIN_SRC latex :exports results
       \begin{equation}
         \begin{array}{lcl}
           \frac{1}{m}\sum\limits^m_{i=1}(x^{(i)}u)^2 &=& \frac{1}{m}\sum\limits^m_{i=1}
@@ -68,6 +69,7 @@
           &=&u^T(\frac{1}{m}\sum\limits^m_{i=1}{x^{(i)}}^Tx^{(i)})u
           \end{array}
       \end{equation}
+    #+END_SRC
 
     其中， $m$ 表示数据集中数据点的个数， $u$ 表示某个投影轴，我们的目的是要找出足够的
     投影轴，譬如 $k(k<n)$ 个投影轴，并以此作为新的坐标轴来表示数据点，由于 $k<n$, 显然
@@ -89,10 +91,38 @@
     如果令 $\frac{1}{m}\sum\limits^m_{i=1}(x^{(i)}u)^2 = \lambda$, 
     $(\frac{1}{m}\sum\limits^m_{i=1}{x^{(i)}}^Tx^{(i)})=\Sigma$, 于是，有
 
+    #+BEGIN_SRC latex :exports results
       \begin{equation}
         \lambda u = \Sigma u
       \end{equation}
+    #+END_SRC
 
     $\lambda$ 是 $\Sigma$ 的本征值， $u$ 是特征向量，最佳的投影向量，显然需要 $\lambda$ 取
     最大的时候对应的 $u$. 因此，PCA 就是对 $\Sigma$, 也就是协方差矩阵，求本征值，并按从大到小
     排列，取比较大的 $k$ 个本征值对应的本征向量组成新的 $n\times{}k$ 矩阵空间就是新的表示空间。 
+
+** 最小平方误差理论
+
+   [[file:PCA/least_sq_err.png]]
+    
+   如果有类似上图的二维样本点 (红色点), 通过线性回归求一个线性函数，使得直线能够最佳拟合样本点，
+   回归时， *最小二乘法度量的是样本点到直线的坐标距离*
+    
+   在此例中，特征是 $x$, 标签是 $y$, 如果使用回归方法来度量最佳直线，那么就是直接在原始样本上
+   做回归，和特征选择就没有什么关系，为此，我们选择另一种评价直线好坏的方法，使用点到直线的距离
+   $d^{\prime}$ 来度量。
+   
+   现有 $n$ 个样本点 $(x_1,x_2,\ldots,x_n)$, 每个样本点均为 $m$ 维，将样本点在直线上投影记为，
+   
+   #+BEGIN_SRC latex :exports results 
+     \begin{equation}
+       \sum\limits^n_{k=1}||(x_k^{\prime}-x_k)||^2
+     \end{equation}
+   #+END_SRC
+   
+   这个公式成为最小平方误差理论 (Least Squared Error), 而确定一条直线，一般只需要确定一个点和
+   确定方向即可。
+
+*** 确定点
+
+    
