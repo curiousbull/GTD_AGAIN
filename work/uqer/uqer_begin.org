@@ -1,0 +1,145 @@
+#+TITLE: 优矿平台学习
+
+* 基础框架
+  
+** 初始条件设置
+
+   1. 时间周期设置
+
+      #+BEGIN_SRC ipython
+        start = '2013-01-01'
+        end='2015-01-01'
+      #+END_SRC
+
+   2. 参照基准设置
+      
+      - 以指标作为参照基准
+
+        #+BEGIN_SRC ipython
+          # 以沪深 300 为参照
+          benchmark = 'HS300'
+        #+END_SRC
+
+        其他指标的列表获取：
+        #+BEGIN_SRC ipython
+          DataAPI.IdxGet()
+        #+END_SRC
+
+      - 以单个股票的走势作为参考基准
+
+        #+BEGIN_SRC ipython
+          benchmark = '000001.XSHE'
+        #+END_SRC
+
+   3. 设置起始资金
+
+      #+BEGIN_SRC ipython
+        # 初始资金 100 万
+        capital_base = 1000000
+      #+END_SRC
+
+   4. 设置策略类型和调仓频率
+
+      #+BEGIN_SRC ipython
+        # 策略类型， 'd' 表示日间策略，使用日线回测， 'm' 表示日内策略，使用分钟线回测
+        freq = 'd'
+        # 调仓频率，表示执行策略运行条件的时间间隔，若 freq = 'd' 时间间隔的交易单位为日
+        refresh_rate = 1
+      #+END_SRC
+
+** 股票池选择
+
+   股票池是策略中所用到的股票要从哪里进行挑选。
+
+   1. 以上证 50 作为股票池
+
+      #+BEGIN_SRC ipython
+        universe = set_universe('HS50')
+      #+END_SRC
+
+   2. 以指定的一些股票作为股票池
+
+      #+BEGIN_SRC ipython
+        universe = ['000001.XSHE', '600000.XSHG']
+      #+END_SRC
+
+   3. 使用多因子条件筛选股票
+
+      #+BEGIN_SRC ipython
+        # 筛选的因子 factor 是股票的 PE 值，筛选的方法是最大的 10 支
+        universe = StockScreen(Factor.PE.nlarge(10))
+      #+END_SRC
+
+** 初始化回测账户
+
+   在编写买入卖出条件的时候，还需要定义回测账户的信息，如果是从零开始的空白账户，初始化可以简单
+   写为：
+
+   #+BEGIN_SRC ipython
+     def initialize(account):
+         pass
+   #+END_SRC
+
+** 设置买卖条件
+
+   最简单的买卖命令有以下几种：
+
+   1. 每次只买一手
+
+      #+BEGIN_SRC ipython
+        def handle_data(account):
+            for s in account.universe:
+                order(s, 100)
+      #+END_SRC
+
+   2. 每只股票买至持仓一手
+
+      #+BEGIN_SRC ipython
+        def handle_data(account):
+            for s in account.universe:
+                order_to(s,100)
+      #+END_SRC
+
+   3. 每只股票买入价值为虚拟账户当前总价值的 $10\%$
+
+      #+BEGIN_SRC ipython
+        def handle_data(account):
+            for s in account.universe:
+                order_pct(s, 0.1)
+      #+END_SRC
+
+   4. 每只股票买入卖出至虚拟账户当前总价值的 $10\%$
+
+      #+BEGIN_SRC ipython
+        def handle_data(account):
+            for s in account.universe:
+                order_pct_to(s,0.1)
+      #+END_SRC
+
+** 组成完整的量化策略 
+
+   #+BEGIN_SRC ipython
+     start = '2014-01-01'
+     end = '2015-06-01'
+     benchmark = 'HS300'
+     universe = set_universe('HS300')
+     capital_base = 1000000
+
+     def initialize(account):
+         pass
+
+     def handle_data(account):
+         for stock in account.universe:
+             # 股票前一天的收盘价
+             p = account.reference_price[stock]
+             # 股票的平均持仓成本
+             cost = account.security_cost.get(stock)
+             # 判断该价格小于 4，且没有买入该股票
+             if 0 < p < 4 and not cost:
+                 order_pct_to(stock, 0.1)
+             # 卖出条件：当 p 的涨幅到买入价的 1.25 倍，全部卖出
+             elif cost and p >= cost*1.25:
+                 order_to(stock,0)
+   #+END_SRC
+
+* 双均线策略实现
